@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ax from "../utils/ax.jsx";
-import Book from "../../components/Book.jsx";
+import { Book } from "../../components";
 
 const Discover = () => {
 
@@ -41,6 +41,7 @@ const Discover = () => {
 					</button>
 				</form>
 			</div>
+
 			<div className="grid grid-cols-3 gap-12 m-12">
 				{
 					results?.map(book => {
