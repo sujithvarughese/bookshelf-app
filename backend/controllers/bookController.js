@@ -30,7 +30,8 @@ const updateBookDetails = async (req, res) => {
 
 // DELETE book from library using params
 const removeBookFromLibrary = async (req, res) => {
-  const book = await Book.findByIdAndDelete(req.body.id)
+  const { id } = req.params
+  const book = await Book.findByIdAndDelete(id)
   res.status(StatusCodes.OK).json({ msg: `${book.title} successfully removed from library` })
 }
 

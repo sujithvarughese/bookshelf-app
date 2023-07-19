@@ -4,7 +4,6 @@ const BookshelfSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
-		default: 'My Bookshelf'
 	},
 	books: {
 		type: [mongoose.Types.ObjectId],
@@ -26,5 +25,6 @@ const BookshelfSchema = new mongoose.Schema({
 		default: () => Date.now()
 	}
 }, { timestamps: true })
+
 
 export default mongoose.model('Bookshelf', BookshelfSchema)

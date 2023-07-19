@@ -5,5 +5,7 @@ import BookDB from "./BookDB.jsx";
 import BookPreviewDB from "./BookPreviewDB.jsx";
 import BookAPI from "./BookAPI.jsx";
 import BookPreviewAPI from "./BookPreviewAPI.jsx";
+import Loading from "./Loading.jsx";
+import BookshelfForm from "./BookshelfForm.jsx";
 
-export { Layout, Navbar, Footer, BookDB, BookPreviewDB, BookAPI, BookPreviewAPI }
+export { Layout, Navbar, Footer, BookDB, BookPreviewDB, BookAPI, BookPreviewAPI, Loading, BookshelfForm }

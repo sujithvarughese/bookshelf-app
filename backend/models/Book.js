@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 const BookSchema = new mongoose.Schema({
 	title: {
 		type: String,
-		required: [true, 'Please provide book Title'],
 		unique: [true, 'BookAPI already in library!']
 	},
 	authors: {

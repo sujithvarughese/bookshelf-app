@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { axAPI, axDB } from "../utils/ax.jsx";
-import { BookPreviewAPI } from "../components";
+import { BookPreviewAPI, Loading } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 // page will allow user to search for books to add to his/her library
 const Discover = () => {
 
-  const { library } = useGlobalContext()
+  const { library, isLoading } = useGlobalContext()
 
   // state for search values as user types
   const [values, setValues] = useState("");
@@ -18,13 +18,15 @@ const Discover = () => {
   // User should be able to click each element to get further details on each book from results
   const searchBySubject = () => {
     const fetchData = async () => {
-      const response = await axAPI(`/subjects/${values}.json`);
+      const response = await axAPI(`/subjects/${values}.json?limit=36`);
       const { works } = response.data;
       // array of just keys of books in library
       const titles = library.map(book => book.title)
       // filter books to not include books already in user library
       const worksFiltered = works.filter(book => !titles.includes(book.title))
       setResults(worksFiltered);
+      console.log(works);
+      console.log(worksFiltered);
     };
     fetchData();
   };
@@ -36,6 +38,7 @@ const Discover = () => {
 
   return (
     <div>
+
       <div className="flex gap-2 ml-10">
         <form className="flex gap-6 mx-auto" onSubmit={handleSubmit}>
           <input
@@ -56,8 +59,10 @@ const Discover = () => {
         </form>
       </div>
 
+      { isLoading && <Loading />}
+
       <div className="grid grid-cols-3 gap-12 m-12">
-        {results?.map((book) => {
+        {results.map((book) => {
           return (
             <div key={book.key}>
               <BookPreviewAPI {...book} />

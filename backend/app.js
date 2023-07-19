@@ -27,6 +27,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/library", bookRouter);
-app.use("/api/v1/bookshelves", bookRouter);
+app.use("/api/v1/bookshelves", bookshelfRouter);
 
 export default app;

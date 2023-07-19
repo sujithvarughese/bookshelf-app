@@ -1,9 +1,12 @@
 
 import { useGlobalContext } from "../context/GlobalContext.jsx";
+import { useState } from "react";
+import AddToBookshelfForm from "./AddToBookshelfForm.jsx";
 
 const BookPreviewDB = ({ _id, title, authors, coverID }) => {
 
-	const { removeBookFromLibrary, addBookToBookshelf } = useGlobalContext()
+	const { removeBookFromLibrary, bookshelves } = useGlobalContext()
+
 
 	return (
 		<div>
@@ -23,11 +26,8 @@ const BookPreviewDB = ({ _id, title, authors, coverID }) => {
 				>remove from library
 				</button>
 
-				<button
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
-					onClick={()=>addBookToBookshelf(_id)}
-				>add to bookshelf
-				</button>
+				{ bookshelves.length > 0 && <AddToBookshelfForm bookID={_id}/> }
+
 			</div>
 
 		</div>
