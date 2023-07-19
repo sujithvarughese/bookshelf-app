@@ -2,13 +2,25 @@ import express from "express";
 const router = express.Router();
 import {
 	getAllBookshelves,
-	getSingleBookshelf,
+	getBookshelf,
 	createBookshelf,
+	updateBookshelf,
+	deleteBookshelf,
 	addBookToBookshelf,
-	deleteBookshelf
+	removeBookFromBookshelf
 } from "../controllers/bookshelfController.js";
 
-router.route("/").get(getAllBookshelves).post(createBookshelf);
-router.route("/:id").get(getSingleBookshelf).patch(addBookToBookshelf).delete(deleteBookshelf);
+router.route("/")
+      .get(getAllBookshelves)
+      .post(createBookshelf);
+router.route("/:id")
+      .get(getBookshelf)
+      .patch(updateBookshelf)
+      .delete(deleteBookshelf);
+router.route("/add/:id")
+      .patch(addBookToBookshelf)
+router.route("remove/:id")
+      .patch(removeBookFromBookshelf)
+
 
 export default router;

@@ -20,18 +20,13 @@ const addBookToLibrary = async (req, res) => {
 
 // PATCH book details from req.body
 const updateBookDetails = async (req, res) => {
-  const book = await Book.findOne({ key: req.body.key })
-  if (!book) {
-    res.status(StatusCodes.BAD_REQUEST).json({ msg: 'book not found!'})
-  }
-  await Book.findByIdAndUpdate({ key: req.body.key }, req.body)
-  res.status(StatusCodes.OK).json({ msg: `${req.body.title || book.title} successfully updated` })
+  const book = await Book.findByIdAndUpdate(req.params.id, req.body)
+  res.status(StatusCodes.OK).json({ msg: `${book.title} successfully updated` })
 }
 
 // DELETE book from library using params
 const removeBookFromLibrary = async (req, res) => {
-  const { id } = req.params
-  const book = await Book.findByIdAndDelete(id)
+  const book = await Book.findByIdAndDelete(req.params.id)
   res.status(StatusCodes.OK).json({ msg: `${book.title} successfully removed from library` })
 }
 

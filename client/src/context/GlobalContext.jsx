@@ -9,11 +9,11 @@ import {
 	GET_BOOKSHELVES_BEGIN,
 	GET_BOOKSHELVES_SUCCESS,
 	GET_BOOKSHELVES_ERROR,
-	CREATE_BOOKSHELF_BEGIN,
-	CREATE_BOOKSHELF_SUCCESS,
-	CREATE_BOOKSHELF_ERROR
+	GET_BOOKSHELF_BEGIN,
+	GET_BOOKSHELF_SUCCESS,
+	GET_BOOKSHELF_ERROR,
 } from "./actions.jsx"
-import bookshelfImages from "../assets/images/bookshelves/index.js";
+import bookshelf from "../components/Bookshelf.jsx";
 
 const initialState = {
 	library: [],
@@ -39,7 +39,7 @@ const GlobalProvider = ({ children }) => {
 			})
 		} catch (error) {
 			dispatch({
-				type: GET_LIBRARY_SUCCESS,
+				type: GET_LIBRARY_ERROR,
 				payload: { msg: error }
 			})
 		}
@@ -55,6 +55,15 @@ const GlobalProvider = ({ children }) => {
 					firstPublishYear: first_publish_year,
 					subject: subject
 			})
+			getLibrary()
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	const updateBookDetails = async (id, book) => {
+		try {
+			await axDB.patch(`/library/${id}`, { ...book })
 			getLibrary()
 		} catch (error) {
 			console.log(error);
@@ -81,30 +90,41 @@ const GlobalProvider = ({ children }) => {
 			})
 		} catch (error) {
 			dispatch({
-				type: GET_LIBRARY_SUCCESS,
+				type: GET_BOOKSHELVES_ERROR,
+				payload: { msg: error }
+			})
+		}
+	}
+
+	const getBookshelf = async (id) => {
+		dispatch({ type: GET_BOOKSHELF_BEGIN })
+		try {
+			const response = await axDB(`/bookshelves/${id}`)
+			const { bookshelf } = response.data
+			dispatch({
+				type: GET_BOOKSHELF_SUCCESS,
+				payload: { bookshelf }
+			})
+		} catch (error) {
+			dispatch({
+				type: GET_BOOKSHELF_ERROR,
 				payload: { msg: error }
 			})
 		}
 	}
 
 	const createBookshelf = async (bookshelf) => {
-		console.log(bookshelf);
-		dispatch({ type: CREATE_BOOKSHELF_BEGIN })
 		try {
 			await axDB.post('/bookshelves', bookshelf)
 			getAllBookshelves()
-			dispatch({ type: CREATE_BOOKSHELF_SUCCESS })
+
 		} catch (error) {
-			dispatch({
-				type: CREATE_BOOKSHELF_ERROR,
-				payload: { msg: error }
-			})
+			console.log(error);
 		}
 	}
 
 	const addBookToBookshelf = async (bookID, bookshelf) => {
 		try {
-			console.log(bookID);
 			await axDB.patch(`/bookshelves/${bookshelf}`, { bookID })
 			getAllBookshelves()
 		} catch (error) {
@@ -112,7 +132,14 @@ const GlobalProvider = ({ children }) => {
 		}
 	}
 
-
+	const removeBookFromBookshelf = async (bookID, bookshelf) => {
+		const updatedBookshelf = bookshelf.books.filter(book => book._id !== bookID)
+		try {
+			await axDB.patch(`/bookshelves/${bookshelf}`, updatedBookshelf)
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	return (
 		<GlobalContext.Provider value={
@@ -120,8 +147,10 @@ const GlobalProvider = ({ children }) => {
 				...state,
 				getLibrary,
 				addBookToLibrary,
+				updateBookDetails,
 				removeBookFromLibrary,
 				getAllBookshelves,
+				getBookshelf,
 				createBookshelf,
 				addBookToBookshelf,
 			}

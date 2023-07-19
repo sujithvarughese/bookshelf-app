@@ -3,16 +3,17 @@ const router = express.Router();
 import {
 	getAllBooks,
 	addBookToLibrary,
-	removeBookFromLibrary,
 	updateBookDetails,
+	removeBookFromLibrary,
 } from "../controllers/bookController.js";
 
 router.route("/")
       .get(getAllBooks)
       .post(addBookToLibrary)
-      .patch(updateBookDetails)
 
-router.route("/:id").delete(removeBookFromLibrary);
+router.route("/:id")
+      .patch(updateBookDetails)
+      .delete(removeBookFromLibrary);
 
 
 
