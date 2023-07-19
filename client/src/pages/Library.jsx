@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
-import { axDB } from "../utils/ax";
 import { Book } from "../components";
+import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 const Library = () => {
-  const [myLibrary, setMyLibrary] = useState([]);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await axDB("/library");
-      const { library } = response.data;
-      setMyLibrary(library);
-    };
-    fetchBooks()
-  }, []);
+	const { library } = useGlobalContext();
 
-  return (
-    <div>
-      <>My Library</>
-      {myLibrary?.map((book) => {
-        return (
-            <Book key={book.title} {...book} />
-        );
-      })}
-    </div>
-  );
+	return (
+		<div>
+			{
+				library?.map((book) => {
+					const { _id } = book
+					return (
+						<Book key={_id} {...book} />
+					);
+				})}
+		</div>
+	);
 };
 
 export default Library;
