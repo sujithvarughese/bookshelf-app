@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import { axAPI, axDB } from "../utils/ax.jsx";
-import { Book } from "../components";
+import { BookPreviewAPI } from "../components";
+import { useGlobalContext } from "../context/GlobalContext.jsx";
 
+// page will allow user to search for books to add to his/her library
 const Discover = () => {
-  // state for search function
+
+  const { library } = useGlobalContext()
+
+  // state for search values as user types
   const [values, setValues] = useState("");
+  // state for search results
   const [results, setResults] = useState([]);
 
   // api call returns array of books matching subject search
+  // Results set in state, <BookPreviewAPI /> will render image, title, author
+  // User should be able to click each element to get further details on each book from results
   const searchBySubject = () => {
     const fetchData = async () => {
       const response = await axAPI(`/subjects/${values}.json`);
       const { works } = response.data;
-      setResults(works);
-      console.log(works);
+      // array of just keys of books in library
+      const titles = library.map(book => book.title)
+      // filter books to not include books already in user library
+      const worksFiltered = works.filter(book => !titles.includes(book.title))
+      setResults(worksFiltered);
     };
     fetchData();
   };
@@ -22,8 +33,6 @@ const Discover = () => {
     e.preventDefault();
     searchBySubject();
   };
-
-
 
   return (
     <div>
@@ -51,7 +60,7 @@ const Discover = () => {
         {results?.map((book) => {
           return (
             <div key={book.key}>
-              <Book {...book} />
+              <BookPreviewAPI {...book} />
             </div>
           );
         })}

@@ -5,12 +5,10 @@ const Home = () => {
 
 	const { getLibrary } = useGlobalContext()
 
-	// when initial program renders, users library is automatically loaded
+	// when initial program renders, users library is automatically loaded into global state
 	useEffect(() => {
 		getLibrary()
 	}, [])
-
-
 
 
 	return (

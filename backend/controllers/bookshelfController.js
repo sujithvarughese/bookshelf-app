@@ -19,7 +19,7 @@ const addBookToBookshelf = async (req, res) => {
 	const { id } = req.params
 	const bookshelf = Bookshelf.findById(id)
 	if (bookshelf.books.some(book => book.title === req.params.title)) {
-		res.status(StatusCodes.BAD_REQUEST).json({ msg: 'Book already in bookshelf!'})
+		res.status(StatusCodes.BAD_REQUEST).json({ msg: 'BookAPI already in bookshelf!'})
 	}
 	bookshelf.push(req.body)
 	bookshelf.save()

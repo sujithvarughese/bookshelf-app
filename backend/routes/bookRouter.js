@@ -11,7 +11,8 @@ router.route("/")
       .get(getAllBooks)
       .post(addBookToLibrary)
       .patch(updateBookDetails)
-      .delete(removeBookFromLibrary);
+
+router.route("/:id").delete(removeBookFromLibrary);
 
 
 

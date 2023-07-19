@@ -1,23 +1,19 @@
 import mongoose from 'mongoose'
 
 const BookSchema = new mongoose.Schema({
-	key: {
-		type: String,
-		required: true
-	},
 	title: {
 		type: String,
 		required: [true, 'Please provide book Title'],
-		unique: [true, 'Book already in library!']
+		unique: [true, 'BookAPI already in library!']
 	},
 	authors: {
 		type: [String],
 		required: [true, 'Please provide Author(s)']
 	},
-	cover_id: {
+	coverID: {
 		type: String
 	},
-	first_publish_year: {
+	firstPublishYear: {
 		type: String
 	},
 	subject: {

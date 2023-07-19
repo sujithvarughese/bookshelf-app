@@ -14,7 +14,8 @@ const addBookToLibrary = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json({ msg: 'book already exists!'})
   }
   await Book.create(req.body)
-  res.status(StatusCodes.CREATED).json({ msg: 'Success' })
+  const library = await Book.find()
+  res.status(StatusCodes.CREATED).json({ library })
 };
 
 // PATCH book details from req.body
@@ -29,8 +30,7 @@ const updateBookDetails = async (req, res) => {
 
 // DELETE book from library using params
 const removeBookFromLibrary = async (req, res) => {
-  const { id } = req.params
-  const book = await Book.findByIdAndDelete(id)
+  const book = await Book.findByIdAndDelete(req.body.id)
   res.status(StatusCodes.OK).json({ msg: `${book.title} successfully removed from library` })
 }
 
