@@ -9,7 +9,7 @@ const getAllBooks = async (req, res) => {
 
 // POST add single book from req.body object
 const addBookToLibrary = async (req, res) => {
-  const book = await Book.findOne({ key: req.body.key })
+  const book = await Book.findOne({ title: req.body.title })
   if (book) {
     res.status(StatusCodes.BAD_REQUEST).json({ msg: 'book already exists!'})
   }
