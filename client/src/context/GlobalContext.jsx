@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import reducer from "./reducer.jsx"
-import { axAPI, axDB } from "../utils/ax.jsx";
+import { axDB } from "../utils/ax.jsx";
 
 import {
 	GET_LIBRARY_BEGIN,
@@ -15,9 +15,11 @@ import {
 } from "./actions.jsx"
 import bookshelf from "../components/Bookshelf.jsx";
 
+
 const initialState = {
 	library: [],
 	bookshelves: [],
+	currentBookshelf: [],
 	isLoading: false
 }
 
@@ -73,6 +75,10 @@ const GlobalProvider = ({ children }) => {
 	const removeBookFromLibrary = async (id) => {
 		try {
 			await axDB.delete(`/library/${id}`)
+			bookshelves.map(bookshelf => {
+				removeBookFromBookshelf()
+			})
+			await axDB.patch(`/bookshelves/remove-all/${id}`)
 			getLibrary()
 		} catch (error) {
 			console.log(error);
@@ -123,19 +129,37 @@ const GlobalProvider = ({ children }) => {
 		}
 	}
 
-	const addBookToBookshelf = async (bookID, bookshelf) => {
+	const addBookToBookshelf = async (book, bookshelf) => {
 		try {
-			await axDB.patch(`/bookshelves/${bookshelf}`, { bookID })
+			await axDB.patch(`/bookshelves/add/${bookshelf}`, { book })
 			getAllBookshelves()
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
-	const removeBookFromBookshelf = async (bookID, bookshelf) => {
-		const updatedBookshelf = bookshelf.books.filter(book => book._id !== bookID)
+	const updateBookshelf = async (bookshelfID, bookshelf) => {
 		try {
-			await axDB.patch(`/bookshelves/${bookshelf}`, updatedBookshelf)
+			await axDB.patch(`/bookshelves/${bookshelfID}`, bookshelf)
+			getAllBookshelves()
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	const deleteBookshelf = async (bookshelfID) => {
+		try {
+			await axDB.delete(`/bookshelves/${bookshelfID}`)
+			getAllBookshelves()
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	const removeBookFromBookshelf = async (book, bookshelf) => {
+		try {
+			await axDB.patch(`/bookshelves/remove/${bookshelf}`, { book })
+			await getAllBookshelves()
 		} catch (error) {
 			console.log(error);
 		}
@@ -152,7 +176,10 @@ const GlobalProvider = ({ children }) => {
 				getAllBookshelves,
 				getBookshelf,
 				createBookshelf,
+				updateBookshelf,
+				deleteBookshelf,
 				addBookToBookshelf,
+				removeBookFromBookshelf
 			}
 		}>
 			{ children }

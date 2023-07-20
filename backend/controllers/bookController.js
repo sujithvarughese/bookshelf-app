@@ -1,7 +1,7 @@
 import Book from "../models/Book.js";
 import { StatusCodes } from "http-status-codes";
 
-// GET all books in library (unpopulated)
+// GET all books in library
 const getAllBooks = async (req, res) => {
   const library = await Book.find();
   res.status(StatusCodes.OK).json({ library });

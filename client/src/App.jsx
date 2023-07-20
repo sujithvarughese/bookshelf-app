@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, Library, Discover, Bookshelves, Error } from "./pages";
-import { Layout } from "./components";
+import Layout from "./layouts/Layout.jsx";
 
 const App = () => {
   return (

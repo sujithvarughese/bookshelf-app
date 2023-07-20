@@ -1,4 +1,4 @@
-import { BookPreviewDB } from "../components";
+import { BookDB } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect } from "react";
 
@@ -20,7 +20,7 @@ const Library = () => {
 				library.map(book => {
 					const { _id } = book
 					return (
-						<BookPreviewDB key={_id} {...book} />
+						<BookDB key={_id} {...book} />
 					);
 				})}
 		</div>

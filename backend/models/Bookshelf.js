@@ -5,10 +5,12 @@ const BookshelfSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	books: {
-		type: [mongoose.Types.ObjectId],
-		ref: "Book"
-	},
+	books: [
+		{
+			type: mongoose.Types.ObjectId,
+			ref: "Book"
+		}
+	],
 	cover: {
 		type: String
 	},

@@ -1,11 +1,11 @@
-import { useGlobalContext } from "../context/GlobalContext.jsx";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 
-const AddToBookshelfForm = ({ bookID }) => {
+const AddBookToBookshelfBtn = ({ bookID }) => {
 
 	const { bookshelves, addBookToBookshelf } = useGlobalContext()
 
-	const [bookshelf, setBookshelf] = useState(bookshelves[0]._id)
+	const [bookshelf, setBookshelf] = useState(bookshelves[0]?._id)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -46,4 +46,4 @@ const AddToBookshelfForm = ({ bookID }) => {
 	);
 };
 
-export default AddToBookshelfForm;
+export default AddBookToBookshelfBtn;

@@ -7,7 +7,7 @@ import {
 	updateBookshelf,
 	deleteBookshelf,
 	addBookToBookshelf,
-	removeBookFromBookshelf
+	removeBookFromBookshelf,
 } from "../controllers/bookshelfController.js";
 
 router.route("/")
@@ -19,7 +19,7 @@ router.route("/:id")
       .delete(deleteBookshelf);
 router.route("/add/:id")
       .patch(addBookToBookshelf)
-router.route("remove/:id")
+router.route("/remove/:id")
       .patch(removeBookFromBookshelf)
 
 

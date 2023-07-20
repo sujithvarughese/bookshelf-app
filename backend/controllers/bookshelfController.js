@@ -1,17 +1,16 @@
 import Bookshelf from "../models/Bookshelf.js";
-import Book from "../models/Book.js";
 import { StatusCodes } from "http-status-codes";
 
 // GET all bookshelves (unpopulated)
 const getAllBookshelves = async (req, res) => {
-	const bookshelves = await Bookshelf.find();
+	const bookshelves = await Bookshelf.find()
 	res.status(StatusCodes.OK).json({ bookshelves });
 };
 
 // GET single populated bookshelf
 const getBookshelf = async (req, res) => {
 	const { id } = req.params
-	const bookshelf = await Bookshelf.findById(id)
+	const bookshelf = await Bookshelf.findById(id).populate('books')
 	res.status(StatusCodes.OK).json({ bookshelf });
 }
 // POST new bookshelf
@@ -35,28 +34,43 @@ const deleteBookshelf = async (req, res) => {
 // PATCH - update existed bookshelf by adding book into bookshelf.books list
 const addBookToBookshelf = async (req, res) => {
 	const bookshelf = await Bookshelf.findById(req.params.id).populate('books')
-	console.log(req.params.id);
-	console.log(req.body.bookID);
 	const { books } = bookshelf
-	console.log(books);
 	// make sure book not in bookshelf by comparing book._id (stored in req.body.bookID) with books in bookshelf (bookshelf.books is a list of book._id (representing Book objects)
-	if (books.includes(req.body.bookID)) {
-		res.status(StatusCodes.BAD_REQUEST).json({ msg: 'book alrady in bookshelf!'})
+	if (books.includes(req.body.book)) {
+		res.status(StatusCodes.BAD_REQUEST).json({ msg: 'book already in bookshelf!'})
 	}
 
-	bookshelf.books.push(req.body.bookID)
-	await Bookshelf.findByIdAndUpdate(req.params.id, { bookshelf })
+	bookshelf.books.push(req.body.book)
+	await Bookshelf.findByIdAndUpdate(req.params.id, { ...bookshelf, books: [...bookshelf.books] })
 	res.status(StatusCodes.OK).json({ bookshelf });
 }
 // PATCH - update existed bookshelf by deleting book from [books] in Bookshelf object
 const removeBookFromBookshelf = async (req, res) => {
-	console.log(req.params);
-	console.log(req.body.bookID);
-	const bookshelf = await Bookshelf.findById(req.params.id)
-	const updatedBookshelf = bookshelf.books.filter(book => book !== req.body.bookID)
-	await Bookshelf.findByIdAndUpdate(req.params.id, { updatedBookshelf })
+	const bookshelf = await Bookshelf.findById(req.params.id).populate('books')
+	console.log(req.body.book);
+	const { books } = bookshelf
+	/*
+	const bookList = books.map(book => {
+		return {
+			...book,
+			_id: book._id.valueOf()
+		}
+	})
+
+	const bookIdObjs = books.map(book => book._id)
+	const bookIDs = bookIdObjs.map(obj => obj.valueOf())
+	*/
+	const updatedBookList = books.filter(book => book._id.valueOf() !== req.body.book)
+	const updatedBookshelf = await Bookshelf.findByIdAndUpdate(
+		req.params.id,
+		{
+			...this,
+			books: updatedBookList
+
+		})
 	res.status(StatusCodes.OK).json({ updatedBookshelf });
 }
+
 
 export {
 	getAllBookshelves,
@@ -65,5 +79,5 @@ export {
 	updateBookshelf,
 	deleteBookshelf,
 	addBookToBookshelf,
-	removeBookFromBookshelf
+	removeBookFromBookshelf,
  };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { axAPI, axDB } from "../utils/ax.jsx";
-import { BookPreviewAPI, Loading } from "../components";
+import { BookAPI, Loading } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 // page will allow user to search for books to add to his/her library
@@ -65,7 +65,7 @@ const Discover = () => {
         {results.map((book) => {
           return (
             <div key={book.key}>
-              <BookPreviewAPI {...book} />
+              <BookAPI {...book} />
             </div>
           );
         })}

@@ -1,8 +1,8 @@
-import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useState } from "react";
+import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { AddBookToBookshelfBtn, RemoveFromLibraryBtn } from "./buttons/index.js";
 
-const BookDB = (book) => {
+const BookBookshelf = (book) => {
 
 	const { title, authors, coverID } = book
 	const [showDetails, setShowDetails] = useState(false)
@@ -25,10 +25,9 @@ const BookDB = (book) => {
 			{ showDetails && <BookDetails {...book}/>}
 		</div>
 	)
+};
 
-}
 const BookDetails = (book) => {
-
 	const { _id, firstPublishYear, subject, genre, pages, status, rating, userRating, notes } = book
 	const { bookshelves, removeBookFromLibrary, addBookToBookshelf } = useGlobalContext();
 
@@ -59,4 +58,4 @@ const BookDetails = (book) => {
 	);
 }
 
-export default BookDB;
+export default BookBookshelf;

@@ -62,7 +62,7 @@ const reducer = (state, action) => {
 	if (action.type === GET_BOOKSHELF_SUCCESS) {
 		return {
 			...state,
-			bookshelf: action.payload.bookshelf,
+			currentBookshelf: action.payload.bookshelf,
 			isLoading: false
 		}
 	}
