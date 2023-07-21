@@ -33,7 +33,7 @@ const Bookshelf = (bookshelf) => {
 const BookshelfDetails = (bookshelf) => {
 
 	const { _id } = bookshelf;
-	const { removeBookFromBookshelf, bookshelves } = useGlobalContext();
+	const { removeBookFromBookshelf, deleteBookshelf, bookshelves } = useGlobalContext();
 
 	const [books, setBooks] = useState([]);
 
@@ -52,27 +52,37 @@ const BookshelfDetails = (bookshelf) => {
 
 	return (
 		<div>
-			{
-				books?.map((book, index) => {
-					return (
+			<div>
+				{
+					books?.map((book, index) => {
+						return (
 
-						<div key={index}>
-							{book.title}
-							{book.authors.map(author => {
-								return (
-									<div key={author}>{author}</div>
-								);
-							})}
-							<button name=""
-							        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
-							        onClick={() => removeBookFromBookshelf(book._id, _id)}
-							>remove from bookshelf
-							</button>
+							<div key={index}>
+								{book.title}
+								{book.authors.map(author => {
+									return (
+										<div key={author}>{author}</div>
+									);
+								})}
+								<button name=""
+								        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+								        onClick={() => removeBookFromBookshelf(book._id, _id)}
+								>remove from bookshelf
+								</button>
+							</div>
 
-						</div>
-					);
-				})
-			}
+						);
+					})
+				}
+			</div>
+
+			<div>
+				<button name=""
+				        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+				        onClick={() => deleteBookshelf(_id)}
+				>delete bookshelf
+				</button>
+			</div>
 		</div>
 	);
 
