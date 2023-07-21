@@ -1,4 +1,4 @@
-import { BookDB } from "../components";
+import { BookDB, Loading } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect } from "react";
 
@@ -6,22 +6,34 @@ import { useEffect } from "react";
 const Library = () => {
 
 	// library already in global state from Home render
-	const { library, getLibrary } = useGlobalContext();
+	const { library, getLibrary, isLoading } = useGlobalContext();
 
 	useEffect(() => {
 		getLibrary();
 	}, []);
 	// display each book as a component
 	return (
-		<div className="grid grid-cols-3 gap-12 m-12">
-			{
-				library.map(book => {
-					const { _id } = book;
-					return (
-						<BookDB key={_id} {...book} />
-					);
-				})}
+		<div className="">
+			<div className="text-4xl m-8">My Library</div>
+
+			{isLoading && <Loading />}
+
+			<div
+				className="container flex flex-wrap justify-between bg-gray-100 rounded-lg">
+				{
+					library.map(book => {
+						const { _id } = book;
+						return (
+
+							<BookDB key={_id} {...book} />
+
+
+						);
+					})}
+			</div>
+
 		</div>
+
 	);
 };
 

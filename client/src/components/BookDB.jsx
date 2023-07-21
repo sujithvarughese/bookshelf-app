@@ -12,21 +12,33 @@ const BookDB = (book) => {
 	const [showDetails, setShowDetails] = useState(false);
 
 	return (
-		<div>
+		<div
+			className="hover:bg-gray-200 m-6 bg-white hover:z-0 rounded-lg overflow-hidden shadow-lg py-8 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2"
+		>
 
-			<img className="cover" src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`} alt={title} />
+			<div>
+				<img
+					className="h-64 w-40 mx-auto rounded-lg shadow-md"
+					src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`}
+					alt={title} onClick={() => setShowDetails(!showDetails)} />
+			</div>
 
-			<div className="title" onClick={() => setShowDetails(!showDetails)}>{title}</div>
 
-			<div className="authors">
+			<div className="text-2xl leading-tight py-2 hover:cursor-pointer hover:text-teal-800"
+			     onClick={() => setShowDetails(!showDetails)}>{title}</div>
+
+			<div className="text-gray-500">
 				{
 					authors.map((author, index) => {
 						return <div key={index}>{author}</div>;
 					})
 				}
 			</div>
+			<div>
+				{showDetails && <BookDetails {...book} />}
+			</div>
 
-			{showDetails && <BookDetails {...book} />}
+
 		</div>
 	);
 
@@ -44,9 +56,7 @@ const BookDetails = (book) => {
 			<div>
 				Year published: {firstPublishYear}
 			</div>
-			<div>
-				Subject: {subject}
-			</div>
+
 			<div>
 				{genre}
 				{pages}
@@ -56,10 +66,10 @@ const BookDetails = (book) => {
 				{notes}
 			</div>
 
-			<div className="buttons">
+			<div className="space-y-2">
 				<RemoveFromLibraryBtn bookID={_id} />
 
-				{<AddBookToBookshelfBtn bookID={{ _id }} />}
+				<AddBookToBookshelfBtn bookID={{ _id }} />
 			</div>
 
 			{showAlert && <Alert />}

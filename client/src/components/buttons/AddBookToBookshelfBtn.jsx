@@ -3,19 +3,20 @@ import { useState } from "react";
 
 const AddBookToBookshelfBtn = ({ bookID }) => {
 
-	const { bookshelves, addBookToBookshelf } = useGlobalContext()
+	const { bookshelves, addBookToBookshelf } = useGlobalContext();
 
-	const [bookshelf, setBookshelf] = useState(bookshelves[0]?._id)
+	const [bookshelf, setBookshelf] = useState(bookshelves[0]?._id);
 
 	const handleSubmit = (e) => {
-		e.preventDefault()
-		addBookToBookshelf(bookID, bookshelf)
-	}
+		e.preventDefault();
+		addBookToBookshelf(bookID, bookshelf);
+	};
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
+			<form className="flex flex-col gap-2 z-10" onSubmit={handleSubmit}>
 				<select
+					className="mx-auto"
 					id="bookshelfAdd"
 					value={bookshelf}
 					onChange={(e) => setBookshelf(e.target.value)}
@@ -29,14 +30,14 @@ const AddBookToBookshelfBtn = ({ bookID }) => {
 								>
 									{bookshelf.name}
 								</option>
-							)
+							);
 						})
 					}
 				</select>
 
 				<button
 					type="submit"
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+					className="bg-teal-400 w-36 z-40 hover:z-50 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
 				>add to bookshelf
 				</button>
 

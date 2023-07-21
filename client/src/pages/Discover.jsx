@@ -37,8 +37,9 @@ const Discover = () => {
 	return (
 		<div>
 
-			<div className="flex gap-2 ml-10">
-				<form className="flex gap-6 mx-auto" onSubmit={handleSubmit}>
+			<div className="w-1/2 mx-auto my-12">
+
+				<form className="flex gap-6" onSubmit={handleSubmit}>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 						type="text"
