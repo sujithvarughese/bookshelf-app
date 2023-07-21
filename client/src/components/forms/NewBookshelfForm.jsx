@@ -1,29 +1,30 @@
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 import bookshelfImages from "../../assets/images/bookshelves/index.js";
+import { Alert } from "..";
 
 const initialState = {
 	name: "",
 	books: [],
 	cover: null,
 	notes: ""
-}
+};
 const NewBookshelfForm = () => {
 
-	const { createBookshelf } = useGlobalContext()
+	const { createBookshelf, showAlert } = useGlobalContext();
 	// state for search values as user types
-	const [values, setValues] = useState(initialState)
+	const [values, setValues] = useState(initialState);
 
 	const handleChange = (e) => {
-		setValues({...values, [e.target.name]: e.target.value})
-	}
+		setValues({ ...values, [e.target.name]: e.target.value });
+	};
 
 	const handleSubmit = (e) => {
-		e.preventDefault()
-		const img = bookshelfImages[Math.floor(Math.random() * bookshelfImages.length)]
-		createBookshelf({ ...values, cover: img })
-		setValues(initialState)
-	}
+		e.preventDefault();
+		const img = bookshelfImages[Math.floor(Math.random() * bookshelfImages.length)];
+		createBookshelf({ ...values, cover: img });
+		setValues(initialState);
+	};
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -42,6 +43,8 @@ const NewBookshelfForm = () => {
 			>
 				create bookshelf
 			</button>
+
+			{showAlert && <Alert />}
 		</form>
 	);
 };

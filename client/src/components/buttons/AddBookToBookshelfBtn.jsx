@@ -12,14 +12,13 @@ const AddBookToBookshelfBtn = ({ bookID }) => {
 		addBookToBookshelf(bookID, bookshelf)
 	}
 
-
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
 				<select
 					id="bookshelfAdd"
 					value={bookshelf}
-					onChange={(e)=>setBookshelf(e.target.value)}
+					onChange={(e) => setBookshelf(e.target.value)}
 				>
 					{
 						bookshelves.map((bookshelf, index) => {

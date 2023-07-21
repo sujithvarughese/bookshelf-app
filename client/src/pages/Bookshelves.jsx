@@ -1,30 +1,29 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import NewBookshelfForm from "../components/forms/NewBookshelfForm.jsx";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import Bookshelf from "../components/Bookshelf.jsx";
+import { Bookshelf } from "../components";
 
 const Bookshelves = () => {
 
-	const { bookshelves } = useGlobalContext()
+	const { bookshelves, getAllBookshelves } = useGlobalContext();
+
+	useEffect(() => {
+		getAllBookshelves();
+	}, []);
+
 
 	return (
 		<div>
-
 			<NewBookshelfForm />
-
 			{
 				bookshelves?.map(bookshelf => {
 					return (
 						<div key={bookshelf._id}>
-							<Bookshelf {...bookshelf}/>}
+							<Bookshelf {...bookshelf} />
 						</div>
-					)
-
+					);
 				})
 			}
-
-
-
 		</div>
 	);
 };

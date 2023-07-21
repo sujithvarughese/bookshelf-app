@@ -1,22 +1,22 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect, useState } from "react";
 import { axDB } from "../utils/ax.jsx";
-import { GET_BOOKSHELF_ERROR, GET_BOOKSHELF_SUCCESS } from "../context/actions.jsx";
 
 const Bookshelf = (bookshelf) => {
 
-	const { _id, cover, name, books, notes } = bookshelf
+	const { cover, name, notes } = bookshelf;
 
-	const { getBookshelf, removeBookFromBookshelf } = useGlobalContext()
-
-	const [showBookshelfDetails, setShowBookshelfDetails] = useState(false)
+	// user can choose to see extended details
+	const [showBookshelfDetails, setShowBookshelfDetails] = useState(false);
 
 	return (
 		<div>
 
-			<img src={cover} alt={name}  width="300" height="300"/>
+			<img src={cover} alt={name} width="300" height="300" />
 
-			<div onClick={()=>{setShowBookshelfDetails(!showBookshelfDetails)}}>
+			<div onClick={() => {
+				setShowBookshelfDetails(!showBookshelfDetails);
+			}}>
 				{name}
 			</div>
 
@@ -24,9 +24,7 @@ const Bookshelf = (bookshelf) => {
 				{notes}
 			</div>
 
-			{ showBookshelfDetails && <BookshelfDetails {...bookshelf}/> }
-
-
+			{showBookshelfDetails && <BookshelfDetails {...bookshelf} />}
 
 		</div>
 	);
@@ -34,24 +32,23 @@ const Bookshelf = (bookshelf) => {
 
 const BookshelfDetails = (bookshelf) => {
 
-	const { _id, cover, name, notes } = bookshelf
-	const { removeBookFromBookshelf, bookshelves } = useGlobalContext()
+	const { _id } = bookshelf;
+	const { removeBookFromBookshelf, bookshelves } = useGlobalContext();
 
-	const [books, setBooks] = useState([])
+	const [books, setBooks] = useState([]);
 
 	useEffect(() => {
 		const fetchBookshelf = async () => {
 			try {
-				const response = await axDB(`/bookshelves/${_id}`)
-				const { bookshelf } = response.data
-				setBooks(bookshelf.books)
-				console.log(bookshelf);
+				const response = await axDB(`/bookshelves/${_id}`);
+				const { bookshelf } = response.data;
+				setBooks(bookshelf.books);
 			} catch (error) {
 				console.log(error);
 			}
-		}
-		fetchBookshelf()
-	}, [bookshelves])
+		};
+		fetchBookshelf();
+	}, [bookshelves]);
 
 	return (
 		<div>
@@ -64,21 +61,21 @@ const BookshelfDetails = (bookshelf) => {
 							{book.authors.map(author => {
 								return (
 									<div key={author}>{author}</div>
-								)
+								);
 							})}
 							<button name=""
 							        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
-							        onClick={()=>removeBookFromBookshelf(book._id, _id)}
+							        onClick={() => removeBookFromBookshelf(book._id, _id)}
 							>remove from bookshelf
 							</button>
 
 						</div>
-					)
+					);
 				})
 			}
 		</div>
-		)
+	);
 
-}
+};
 
 export default Bookshelf;

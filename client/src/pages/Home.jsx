@@ -3,13 +3,13 @@ import { useEffect } from "react";
 
 const Home = () => {
 
-	const { getLibrary, getAllBookshelves } = useGlobalContext()
+	const { getLibrary, getAllBookshelves } = useGlobalContext();
 
-	// when initial program renders, users library is automatically loaded into global state
+	// when initial program renders, users library and bookshelves(unpopulated) automatically loaded into global state
 	useEffect(() => {
-		getLibrary()
-		getAllBookshelves()
-	}, [])
+		getLibrary();
+		getAllBookshelves();
+	}, []);
 
 
 	return (
