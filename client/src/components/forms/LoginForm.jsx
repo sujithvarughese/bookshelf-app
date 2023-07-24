@@ -27,6 +27,7 @@ const LoginForm = () => {
 	return (
 		<form className="flex gap-2" onSubmit={handleSubmit}>
 
+			
 			<FormRow placeholder="email" type="email" name="email" value={values.email} handleChange={handleChange} />
 			<FormRow placeholder="password" type="password" name="password" value={values.password}
 			         handleChange={handleChange} />

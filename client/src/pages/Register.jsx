@@ -29,7 +29,7 @@ const Register = () => {
 	return (
 		<div className="border-solid border-4 rounded-3xl w-11/12 my-20 mx-auto py-14 max-w-md">
 
-			<div className="text-4xl m-8">Login</div>
+			<div className="text-4xl m-8">register</div>
 
 			<div className="m-10 space-y-10">
 				<FormRow labelText="last name" type="text" name="lastName" value={values.lastName}

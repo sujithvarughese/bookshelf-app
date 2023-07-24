@@ -38,6 +38,48 @@ const reducer = (state, action) => {
 		};
 	}
 
+	//----- register -----//
+	if (action.type === REGISTER_USER_BEGIN) {
+		return {
+			...state,
+			isLoading: true
+		};
+	}
+	if (action.type === REGISTER_USER_SUCCESS) {
+		return {
+			...state,
+			user: action.payload.user,
+			isLoading: false
+		};
+	}
+	if (action.type === REGISTER_USER_FAILURE) {
+		return {
+			...state,
+			isLoading: false
+		};
+	}
+
+	//----- login -----//
+	if (action.type === LOGIN_USER_BEGIN) {
+		return {
+			...state,
+			isLoading: true
+		};
+	}
+	if (action.type === LOGIN_USER_SUCCESS) {
+		return {
+			...state,
+			user: action.payload.user,
+			isLoading: false
+		};
+	}
+	if (action.type === LOGIN_USER_FAILURE) {
+		return {
+			...state,
+			isLoading: false
+		};
+	}
+
 	//----- get library (get all books) -----//
 	if (action.type === GET_LIBRARY_BEGIN) {
 		return {

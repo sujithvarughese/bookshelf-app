@@ -68,6 +68,19 @@ const Navbar = () => {
 
 				</div>
 
+				<div className="lg:hidden">
+					<a
+						href="/login"
+						className="underline decoration-1 hover:text-white hover:bg-teal-200 rounded-full px-1"
+					>Login
+					</a>
+					<a
+						href="/register"
+						className="underline decoration-1 hover:text-white hover:bg-teal-200 rounded-full px-1"
+					>Register
+					</a>
+				</div>
+
 
 			</div>
 		</nav>

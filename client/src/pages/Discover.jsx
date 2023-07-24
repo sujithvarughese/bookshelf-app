@@ -50,7 +50,7 @@ const Discover = () => {
 						}}
 					/>
 					<button
-						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+						className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
 						type="submit"
 					>
 						search
