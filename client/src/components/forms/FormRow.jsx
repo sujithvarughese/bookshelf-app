@@ -1,14 +1,13 @@
-
-const FormRow = ({ labelText, type, name, value, handleChange  }) => {
+const FormRow = ({ labelText, placeholder, type, name, value, handleChange }) => {
 
 	return (
-		<div className=''>
+		<div className="">
 
 			<label
 				htmlFor={name}
-				className='mt-3 block'
+				className="mt-3 block"
 			>
-				{labelText || name}
+				{labelText}
 			</label>
 
 			<input
@@ -16,12 +15,12 @@ const FormRow = ({ labelText, type, name, value, handleChange  }) => {
 				name={name}
 				value={value}
 				onChange={handleChange}
-				placeholder={labelText}
+				placeholder={placeholder}
 				className="bg-color-grey shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 			/>
 
 		</div>
-	)
-}
+	);
+};
 
-export default FormRow
+export default FormRow;

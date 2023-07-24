@@ -5,6 +5,12 @@ import { axDB } from "../utils/ax.jsx";
 import {
 	DISPLAY_ALERT,
 	CLEAR_ALERT,
+	REGISTER_USER_BEGIN,
+	REGISTER_USER_SUCCESS,
+	REGISTER_USER_FAILURE,
+	LOGIN_USER_BEGIN,
+	LOGIN_USER_SUCCESS,
+	LOGIN_USER_FAILURE,
 	GET_LIBRARY_BEGIN,
 	GET_LIBRARY_SUCCESS,
 	GET_LIBRARY_ERROR,
@@ -21,6 +27,7 @@ const initialState = {
 	alertText: "",
 	alertStyle: "",
 	showAlert: false,
+	user: null,
 	library: [],
 	bookshelves: [],
 	currentBookshelf: [],
@@ -46,6 +53,41 @@ const GlobalProvider = ({ children }) => {
 		setTimeout(() => {
 			dispatch({ type: CLEAR_ALERT });
 		}, ms);
+	};
+
+	//----- auth -----//
+	const register = async (credentials) => {
+		dispatch({ type: REGISTER_USER_BEGIN });
+		try {
+			const response = await axDB.post("/register", credentials);
+			const { user } = response.data;
+			dispatch({
+				type: REGISTER_USER_SUCCESS,
+				payload: { user }
+			});
+		} catch (error) {
+			dispatch({
+				type: REGISTER_USER_FAILURE,
+				payload: { msg: error }
+			});
+		}
+	};
+
+	const login = async (credentials) => {
+		dispatch({ type: LOGIN_USER_BEGIN });
+		try {
+			const response = await axDB.post("/login", credentials);
+			const { user } = response.data;
+			dispatch({
+				type: LOGIN_USER_SUCCESS,
+				payload: { user }
+			});
+		} catch (error) {
+			dispatch({
+				type: LOGIN_USER_FAILURE,
+				payload: { msg: error }
+			});
+		}
 	};
 
 	//----- library -----//
@@ -195,6 +237,8 @@ const GlobalProvider = ({ children }) => {
 				...state,
 				displayAlert,
 				clearAlert,
+				register,
+				login,
 				getLibrary,
 				addBookToLibrary,
 				updateBookDetails,

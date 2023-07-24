@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.jpeg";
+import { LoginForm } from "../components/forms/index.js";
 
 const links = [
 	{
@@ -22,8 +23,8 @@ const links = [
 
 const Navbar = () => {
 	return (
-		<nav className="relative container mx-auto p-2">
-			<div className="flex items-center justify-between py-3 font-serif bg-stone-100">
+		<nav className="relative container mx-auto">
+			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
 
 				<div className="w-20 ml-6">
 					<img src={logo} alt="logo" />
@@ -50,11 +51,22 @@ const Navbar = () => {
 					})}
 				</div>
 
-				<a
-					href="#"
-					className="mr-6 py-2 px-8 bg-teal-400 rounded-full baseline hover:text-white"
-				>Login
-				</a>
+				<div className="hidden lg:flex flex-col">
+
+					<LoginForm />
+
+
+					<div className="mx-24">
+						Not a member yet?
+						<a
+							href="/register"
+							className="underline decoration-1 hover:text-white hover:bg-teal-200 rounded-full px-1"
+						>Register
+						</a>
+					</div>
+
+
+				</div>
 
 
 			</div>
