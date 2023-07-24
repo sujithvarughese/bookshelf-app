@@ -22,12 +22,17 @@ const LoginForm = () => {
 	// context will set state.user and isAdmin appropriately
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const { email, password } = values;
+		if (!email || !password) {
+			return;
+		}
+		login({ email, password });
 	};
 
 	return (
 		<form className="flex gap-2" onSubmit={handleSubmit}>
 
-			
+
 			<FormRow placeholder="email" type="email" name="email" value={values.email} handleChange={handleChange} />
 			<FormRow placeholder="password" type="password" name="password" value={values.password}
 			         handleChange={handleChange} />

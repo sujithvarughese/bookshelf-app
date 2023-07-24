@@ -24,10 +24,16 @@ const Register = () => {
 	// context will set state.user and isAdmin appropriately
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const { lastName, firstName, email, password } = values;
+		if (!email || !password || !lastName || !firstName) {
+			console.log("enter all values");
+			return;
+		}
+		register({ lastName, firstName, email, password, isAdmin: false });
 	};
 
 	return (
-		<div className="border-solid border-4 rounded-3xl w-11/12 my-20 mx-auto py-14 max-w-md">
+		<form onSubmit={handleSubmit} className="border-solid border-4 rounded-3xl w-11/12 my-20 mx-auto py-14 max-w-md">
 
 			<div className="text-4xl m-8">register</div>
 
@@ -42,10 +48,15 @@ const Register = () => {
 
 				<FormRow labelText="password" type="password" name="password" value={values.password}
 				         handleChange={handleChange} />
+
+				<button type="submit"
+				        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
+					register
+				</button>
 			</div>
 
 
-		</div>
+		</form>
 	);
 };
 

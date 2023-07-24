@@ -9,7 +9,7 @@ const BookDB = (book) => {
 
 	// in general view, user should only see cover, title, and author(s)
 	// in detailed view, user should see full book details
-	const [showDetails, setShowDetails] = useState(false);
+	const [user, showDetails, setShowDetails] = useState(false);
 
 	return (
 		<div
@@ -66,11 +66,16 @@ const BookDetails = (book) => {
 				{notes}
 			</div>
 
-			<div className="space-y-2">
-				<RemoveFromLibraryBtn bookID={_id} />
 
-				<AddBookToBookshelfBtn bookID={{ _id }} />
-			</div>
+			{
+				user !== null &&
+				<div className="space-y-2">
+					<RemoveFromLibraryBtn bookID={_id} />
+
+					<AddBookToBookshelfBtn bookID={{ _id }} />
+				</div>
+			}
+
 
 			{showAlert && <Alert />}
 		</div>

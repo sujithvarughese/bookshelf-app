@@ -7,10 +7,11 @@ import {
 	CLEAR_ALERT,
 	REGISTER_USER_BEGIN,
 	REGISTER_USER_SUCCESS,
-	REGISTER_USER_FAILURE,
+	REGISTER_USER_ERROR,
 	LOGIN_USER_BEGIN,
 	LOGIN_USER_SUCCESS,
-	LOGIN_USER_FAILURE,
+	LOGIN_USER_ERROR,
+	LOGOUT_USER,
 	GET_LIBRARY_BEGIN,
 	GET_LIBRARY_SUCCESS,
 	GET_LIBRARY_ERROR,
@@ -59,7 +60,7 @@ const GlobalProvider = ({ children }) => {
 	const register = async (credentials) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
 		try {
-			const response = await axDB.post("/register", credentials);
+			const response = await axDB.post("/auth/register", credentials);
 			const { user } = response.data;
 			dispatch({
 				type: REGISTER_USER_SUCCESS,
@@ -67,7 +68,7 @@ const GlobalProvider = ({ children }) => {
 			});
 		} catch (error) {
 			dispatch({
-				type: REGISTER_USER_FAILURE,
+				type: REGISTER_USER_ERROR,
 				payload: { msg: error }
 			});
 		}
@@ -76,7 +77,7 @@ const GlobalProvider = ({ children }) => {
 	const login = async (credentials) => {
 		dispatch({ type: LOGIN_USER_BEGIN });
 		try {
-			const response = await axDB.post("/login", credentials);
+			const response = await axDB.post("/auth/login", credentials);
 			const { user } = response.data;
 			dispatch({
 				type: LOGIN_USER_SUCCESS,
@@ -84,10 +85,15 @@ const GlobalProvider = ({ children }) => {
 			});
 		} catch (error) {
 			dispatch({
-				type: LOGIN_USER_FAILURE,
+				type: LOGIN_USER_ERROR,
 				payload: { msg: error }
 			});
 		}
+	};
+
+	const logout = async () => {
+		await axDB("/auth/logout");
+		dispatch({ type: LOGOUT_USER });
 	};
 
 	//----- library -----//
@@ -239,6 +245,7 @@ const GlobalProvider = ({ children }) => {
 				clearAlert,
 				register,
 				login,
+				logout,
 				getLibrary,
 				addBookToLibrary,
 				updateBookDetails,

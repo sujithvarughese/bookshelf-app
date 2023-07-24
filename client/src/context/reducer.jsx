@@ -3,10 +3,11 @@ import {
 	CLEAR_ALERT,
 	REGISTER_USER_BEGIN,
 	REGISTER_USER_SUCCESS,
-	REGISTER_USER_FAILURE,
+	REGISTER_USER_ERROR,
 	LOGIN_USER_BEGIN,
 	LOGIN_USER_SUCCESS,
-	LOGIN_USER_FAILURE,
+	LOGIN_USER_ERROR,
+	LOGOUT_USER,
 	GET_LIBRARY_BEGIN,
 	GET_LIBRARY_SUCCESS,
 	GET_LIBRARY_ERROR,
@@ -17,6 +18,8 @@ import {
 	GET_BOOKSHELF_SUCCESS,
 	GET_BOOKSHELF_ERROR
 } from "./actions.jsx";
+
+import { initialState } from "./GlobalContext.jsx";
 
 const reducer = (state, action) => {
 
@@ -52,7 +55,7 @@ const reducer = (state, action) => {
 			isLoading: false
 		};
 	}
-	if (action.type === REGISTER_USER_FAILURE) {
+	if (action.type === REGISTER_USER_ERROR) {
 		return {
 			...state,
 			isLoading: false
@@ -73,10 +76,17 @@ const reducer = (state, action) => {
 			isLoading: false
 		};
 	}
-	if (action.type === LOGIN_USER_FAILURE) {
+	if (action.type === LOGIN_USER_ERROR) {
 		return {
 			...state,
 			isLoading: false
+		};
+	}
+
+	//----- login -----//
+	if (action.type === LOGOUT_USER) {
+		return {
+			...initialState,
 		};
 	}
 
