@@ -1,5 +1,5 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BookDB } from "../components/index.js";
 
 
@@ -7,10 +7,12 @@ const Home = () => {
 
 	const { library, getLibrary, getAllBookshelves } = useGlobalContext();
 
+	const [continueReading, setContinueReading] = useState([]);
+
 	// when initial program renders, users library and bookshelves(unpopulated) automatically loaded into global state
 	useEffect(() => {
-		getLibrary();
-		getAllBookshelves();
+		const books = library.map(book => book.status === "reading");
+		setContinueReading(books);
 	}, []);
 
 

@@ -6,10 +6,10 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
 
 	return (
-		<div>
+		<div className="max-w-6xl px-5 mx-auto my-8 text-center">
 			<Navbar />
 
-			<div className="max-w-6xl px-5 mx-auto my-8 text-center">
+			<div>
 				<Outlet />
 			</div>
 

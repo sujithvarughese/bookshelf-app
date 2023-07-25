@@ -78,14 +78,14 @@ const Navbar = () => {
 	const [links, setLinks] = useState(publicLinks);
 
 	return (
-		<nav className="relative container mx-auto">
+		<nav className="relative container">
 			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
 
 				<div className="w-20 ml-6">
 					<img src={logo} alt="logo" />
 				</div>
 
-				<div className="hidden md:flex space-x-6">
+				<div className="hidden sm:flex space-x-6">
 					{links.map((links, index) => {
 						return (
 							<NavLink

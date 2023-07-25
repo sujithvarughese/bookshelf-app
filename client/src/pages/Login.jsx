@@ -10,7 +10,7 @@ const initialState = {
 
 const Login = () => {
 
-	const { user, login } = useGlobalContext();
+	const { user, login, getLibrary, getAllBookshelves } = useGlobalContext();
 
 	// new state values for user input values
 	const [values, setValues] = useState(initialState);
@@ -35,6 +35,8 @@ const Login = () => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (user) {
+			getLibrary();
+			getAllBookshelves();
 			console.log(`navigating to user home`);
 			setTimeout(() => {
 				navigate("/home");

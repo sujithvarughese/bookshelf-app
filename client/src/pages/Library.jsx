@@ -24,10 +24,7 @@ const Library = () => {
 					library?.map(book => {
 						const { _id } = book;
 						return (
-
 							<BookDB key={_id} {...book} />
-
-
 						);
 					})}
 			</div>

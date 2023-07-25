@@ -10,11 +10,15 @@ const Bookshelf = (bookshelf) => {
 	const [showBookshelfDetails, setShowBookshelfDetails] = useState(false);
 
 	return (
-		<div>
+		<div
+			className="hover:bg-gray-200 m-6 bg-white hover:z-0 rounded-lg overflow-hidden shadow-lg py-8 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">
 
-			<img src={cover} alt={name} width="300" height="300" />
+			<div>
+				<img className="mx-auto rounded-lg p-3" src={cover} alt={name} />
+			</div>
 
-			<div onClick={() => {
+
+			<div className="text-2xl leading-tight py-2 hover:cursor-pointer hover:text-teal-800" onClick={() => {
 				setShowBookshelfDetails(!showBookshelfDetails);
 			}}>
 				{name}
@@ -23,8 +27,10 @@ const Bookshelf = (bookshelf) => {
 			<div>
 				{notes}
 			</div>
+			<div>
+				{showBookshelfDetails && <BookshelfDetails {...bookshelf} />}
+			</div>
 
-			{showBookshelfDetails && <BookshelfDetails {...bookshelf} />}
 
 		</div>
 	);
