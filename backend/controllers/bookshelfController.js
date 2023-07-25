@@ -1,5 +1,7 @@
 import Bookshelf from "../models/Bookshelf.js";
+import Book from "../models/Book.js";
 import { StatusCodes } from "http-status-codes";
+import { BadRequestError } from "../errors/index.js";
 
 // GET all bookshelves (unpopulated)
 const getAllBookshelves = async (req, res) => {
@@ -33,32 +35,42 @@ const deleteBookshelf = async (req, res) => {
 
 // PATCH - update existed bookshelf by adding book into bookshelf.books list
 const addBookToBookshelf = async (req, res) => {
-	const bookshelf = await Bookshelf.findById(req.params.id).populate("books");
+
+	const bookshelf = await Bookshelf.findById(req.params.id);
 	const { books } = bookshelf;
 	// make sure book not in bookshelf by comparing book._id (stored in req.body.bookID) with books in bookshelf
-	// (bookshelf.books is a list of book._id (representing Book objects)
-	if (books.includes(req.body.book)) {
-		res.status(StatusCodes.BAD_REQUEST).json({ msg: "book already in bookshelf!" });
+	const duplicate = books.find(book => book._id.valueOf() === req.body.book);
+	if (duplicate) {
+		throw new BadRequestError("Book already in current bookshelf");
 	}
+	const book = await Book.findById(req.body.book);
+	if (book.inBookshelf) {
+		throw new BadRequestError("Book in another bookshelf");
+	}
+	// update array of books in bookshelf to include new book
+	books.push(req.body.book);
 
-	bookshelf.books.push(req.body.book);
-	await Bookshelf.findByIdAndUpdate(req.params.id, { ...bookshelf, books: [...bookshelf.books] });
-	res.status(StatusCodes.OK).json({ bookshelf });
+	// update bookshelf with updated books array
+	await Bookshelf.findByIdAndUpdate(req.params.id, { ...bookshelf, books: books });
+
+	// update book with reference to bookshelf
+	await Book.findByIdAndUpdate(req.body.book, { ...this, inBookshelf: req.params.id });
+	res.status(StatusCodes.OK).json({ books });
 };
 // PATCH - update existed bookshelf by deleting book from [books] in Bookshelf object
 const removeBookFromBookshelf = async (req, res) => {
-	const bookshelf = await Bookshelf.findById(req.params.id).populate("books");
-	const { books } = bookshelf
+	const bookshelf = await Bookshelf.findById(req.params.id);
+	const { books } = bookshelf;
 
 	const updatedBookList = books.filter(book => book._id.valueOf() !== req.body.book);
-	const updatedBookshelf = await Bookshelf.findByIdAndUpdate(
+	await Bookshelf.findByIdAndUpdate(
 		req.params.id,
 		{
 			...this,
 			books: updatedBookList
 
 		});
-	res.status(StatusCodes.OK).json({ updatedBookshelf });
+	res.status(StatusCodes.OK).json({ updatedBookList });
 };
 
 

@@ -8,9 +8,21 @@ import { AddBookToBookshelfBtn, RemoveFromLibraryBtn } from "./buttons/index.js"
 const BookAPI = (book) => {
 	const { title, authors, cover_id, first_publish_year } = book;
 
-	const { user, addBookToLibrary, library, showAlert } = useGlobalContext();
+	const { user, addBookToLibrary, library, getLibrary, showAlert } = useGlobalContext();
+	// user can click to expand book details
 	const [showDetails, setShowDetails] = useState(false);
 
+	// to show alert and remove 'add to library' button
+	const [addedToLibrary, setAddedToLibrary] = useState(false);
+
+	const addBookAPI = () => {
+		setAddedToLibrary(true);
+		addBookToLibrary(book);
+	};
+
+	useEffect(() => {
+		getLibrary();
+	}, []);
 	// add when pulling book summary -> {showDetails && <BookDetails {...book} />}
 	return (
 		<div>
@@ -27,15 +39,15 @@ const BookAPI = (book) => {
 
 
 			{
-				user !== null &&
+				user !== null && !addedToLibrary &&
 				<button
 					className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
-					onClick={() => addBookToLibrary(book)}
+					onClick={() => addBookAPI(book)}
 				>add to library
 				</button>
 			}
 
-			{showAlert && <Alert />}
+			{showAlert && addedToLibrary && <Alert />}
 
 		</div>
 	);

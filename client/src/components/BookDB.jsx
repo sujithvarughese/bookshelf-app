@@ -48,7 +48,7 @@ const BookDB = (book) => {
 // component will render if user clicks book title to display book details
 const BookDetails = (book) => {
 
-	const { _id, firstPublishYear, subject, genre, pages, status, rating, userRating, notes } = book;
+	const { _id, firstPublishYear, status, userRating, notes, inBookshelf } = book;
 	const { bookshelves, showAlert } = useGlobalContext();
 
 
@@ -59,18 +59,16 @@ const BookDetails = (book) => {
 			</div>
 
 			<div>
-				{genre}
-				{pages}
 				{status}
-				{rating}
 				{userRating}
 				{notes}
+				{inBookshelf !== null && inBookshelf}
 			</div>
-			
-			<div className="space-y-2">
-				<RemoveFromLibraryBtn bookID={_id} />
 
-				<AddBookToBookshelfBtn bookID={{ _id }} />
+			<div className="space-y-2">
+				<RemoveFromLibraryBtn {...book} />
+
+				<AddBookToBookshelfBtn {...book} />
 			</div>
 
 			{showAlert && <Alert />}

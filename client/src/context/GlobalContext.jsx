@@ -192,6 +192,7 @@ const GlobalProvider = ({ children }) => {
 		try {
 			await axDB.post("/bookshelves", bookshelf);
 			await getAllBookshelves();
+			await getLibrary();
 			displayAlert("Bookshelf created", "success", 1500);
 
 		} catch (error) {
@@ -201,8 +202,11 @@ const GlobalProvider = ({ children }) => {
 	};
 
 	const addBookToBookshelf = async (book, bookshelf) => {
+		console.log(book);
+		console.log(bookshelf);
 		try {
 			await axDB.patch(`/bookshelves/add/${bookshelf}`, { book });
+			await getLibrary();
 			await getAllBookshelves();
 			displayAlert("Book added to bookshelf", "success", 1500);
 		} catch (error) {

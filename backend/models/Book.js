@@ -48,7 +48,8 @@ const BookSchema = new mongoose.Schema({
 	},
 	inBookshelf: {
 		type: mongoose.Types.ObjectId,
-		ref: "Bookshelf"
+		ref: "Bookshelf",
+		default: null
 	},
 	createdAt: {
 		type: Date,

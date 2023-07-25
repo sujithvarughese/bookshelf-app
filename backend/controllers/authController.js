@@ -19,9 +19,9 @@ const register = async (req, res) => {
 		throw new BadRequestError("User already exists");
 	}
 
+
 	// first registered user is admin
 	const isFirstUser = (await User.countDocuments({})) === 0;
-
 	// create new user in mongodb
 	const user = await User.create({ lastName, firstName, email, password, isAdmin: isFirstUser });
 	console.log(user);

@@ -1,7 +1,7 @@
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 
-const AddBookToBookshelfBtn = ({ bookID }) => {
+const AddBookToBookshelfBtn = (book) => {
 
 	const { bookshelves, addBookToBookshelf } = useGlobalContext();
 
@@ -9,7 +9,7 @@ const AddBookToBookshelfBtn = ({ bookID }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addBookToBookshelf(bookID, bookshelf);
+		addBookToBookshelf(book._id, bookshelf);
 	};
 
 	return (
