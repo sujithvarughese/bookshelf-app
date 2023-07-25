@@ -41,6 +41,8 @@ const Discover = () => {
 
 			<div className="w-1/2 mx-auto my-12">
 
+				<div className="text-4xl m-8">Discover</div>
+
 				<form className="flex gap-6" onSubmit={handleSubmit}>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

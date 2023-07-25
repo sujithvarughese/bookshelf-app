@@ -5,10 +5,6 @@ const Landing = () => {
 	return (
 		<div className="landing container">
 
-			<div className="text-center m-5 text-2xl">
-				Bookshelf
-			</div>
-
 			<div className="flex flex-col">
 
 				<div className="col-span-2 bg-stone-200 flex justify-between">

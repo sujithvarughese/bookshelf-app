@@ -109,7 +109,8 @@ const Navbar = () => {
 				{user ?
 					<div className="mx-16">
 						Hello {user.firstName}!
-						<button type="submit" className="btn" onClick={logout}>logout</button>
+						<button className="mx-2 my-4 py-1 px-3 bg-teal-400 rounded-full hover:text-white" type="submit"
+						        onClick={logout}>logout</button>
 					</div>
 					:
 					<div className="hidden lg:flex flex-col">
