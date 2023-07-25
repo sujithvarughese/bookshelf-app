@@ -2,17 +2,18 @@ import { useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { AddBookToBookshelfBtn, RemoveFromLibraryBtn } from "./buttons/index.js";
 
+// book when rendering in bookshelf view
 const BookBookshelf = (book) => {
 
-	const { title, authors, coverID } = book
-	const [showDetails, setShowDetails] = useState(false)
+	const { title, authors, coverID } = book;
+	const [showDetails, setShowDetails] = useState(false);
 
 	return (
 		<div>
 
-			<img className="cover" src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`} alt={title}/>
+			<img className="cover" src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`} alt={title} />
 
-			<div className="title" onClick={()=>setShowDetails(!showDetails)}>{title}</div>
+			<div className="title" onClick={() => setShowDetails(!showDetails)}>{title}</div>
 
 			<div className="authors">
 				{
@@ -22,13 +23,13 @@ const BookBookshelf = (book) => {
 				}
 			</div>
 
-			{ showDetails && <BookDetails {...book}/>}
+			{showDetails && <BookDetails {...book} />}
 		</div>
-	)
+	);
 };
 
 const BookDetails = (book) => {
-	const { _id, firstPublishYear, subject, genre, pages, status, rating, userRating, notes } = book
+	const { _id, firstPublishYear, subject, genre, pages, status, rating, userRating, notes } = book;
 	const { bookshelves, removeBookFromLibrary, addBookToBookshelf } = useGlobalContext();
 
 
@@ -52,10 +53,10 @@ const BookDetails = (book) => {
 			<div className="buttons">
 				<RemoveFromLibraryBtn bookID={_id} />
 
-				{ bookshelves.length > 0 && <AddBookToBookshelfBtn bookID={{_id}}/> }
+				{bookshelves.length > 0 && <AddBookToBookshelfBtn bookID={{ _id }} />}
 			</div>
 		</div>
 	);
-}
+};
 
 export default BookBookshelf;

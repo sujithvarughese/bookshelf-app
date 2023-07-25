@@ -1,9 +1,14 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const BookshelfSchema = new mongoose.Schema({
+	user: {
+		type: mongoose.Types.ObjectId,
+		ref: "User",
+		required: true
+	},
 	name: {
 		type: String,
-		required: true,
+		required: true
 	},
 	books: [
 		{
@@ -26,7 +31,7 @@ const BookshelfSchema = new mongoose.Schema({
 		type: Date,
 		default: () => Date.now()
 	}
-}, { timestamps: true })
+}, { timestamps: true });
 
 
-export default mongoose.model('Bookshelf', BookshelfSchema)
+export default mongoose.model("Bookshelf", BookshelfSchema);

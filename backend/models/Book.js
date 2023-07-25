@@ -1,13 +1,18 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const BookSchema = new mongoose.Schema({
+	user: {
+		type: mongoose.Types.ObjectId,
+		ref: "User",
+		required: true
+	},
 	title: {
 		type: String,
-		unique: [true, 'BookAPI already in library!']
+		required: [true, "Please provide title"]
 	},
 	authors: {
 		type: [String],
-		required: [true, 'Please provide Author(s)']
+		required: [true, "Please provide Author(s)"]
 	},
 	coverID: {
 		type: String
@@ -26,7 +31,7 @@ const BookSchema = new mongoose.Schema({
 	},
 	status: {
 		type: String,
-		enum: ['read', 'unread', 'reading']
+		enum: ["read", "unread", "reading"]
 	},
 	rating: {
 		type: Number,
@@ -41,6 +46,10 @@ const BookSchema = new mongoose.Schema({
 	notes: {
 		type: String
 	},
+	inBookshelf: {
+		type: mongoose.Types.ObjectId,
+		ref: "Bookshelf"
+	},
 	createdAt: {
 		type: Date,
 		default: () => Date.now(),
@@ -50,6 +59,6 @@ const BookSchema = new mongoose.Schema({
 		type: Date,
 		default: () => Date.now()
 	}
-}, { timestamps: true })
+}, { timestamps: true });
 
-export default mongoose.model('Book', BookSchema)
+export default mongoose.model("Book", BookSchema);

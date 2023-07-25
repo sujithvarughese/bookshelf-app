@@ -62,6 +62,7 @@ const GlobalProvider = ({ children }) => {
 		try {
 			const response = await axDB.post("/auth/register", credentials);
 			const { user } = response.data;
+			console.log(user);
 			dispatch({
 				type: REGISTER_USER_SUCCESS,
 				payload: { user }
@@ -134,7 +135,7 @@ const GlobalProvider = ({ children }) => {
 
 	const updateBookDetails = async (id, book) => {
 		try {
-			await axDB.patch(`/library/${id}`, { ...book });
+			await axDB.patch(`/library/${id}`, book);
 			await getLibrary();
 		} catch (error) {
 			console.log(error);

@@ -21,7 +21,7 @@ const Library = () => {
 			<div
 				className="container flex flex-wrap justify-between bg-gray-100 rounded-lg">
 				{
-					library.map(book => {
+					library?.map(book => {
 						const { _id } = book;
 						return (
 

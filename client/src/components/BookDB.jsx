@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AddBookToBookshelfBtn, RemoveFromLibraryBtn } from "./buttons/index.js";
 import { Alert } from "../components";
 
+// book when called from database
 const BookDB = (book) => {
 
 	const { title, authors, coverID } = book;
@@ -65,17 +66,12 @@ const BookDetails = (book) => {
 				{userRating}
 				{notes}
 			</div>
+			
+			<div className="space-y-2">
+				<RemoveFromLibraryBtn bookID={_id} />
 
-
-			{
-				user !== null &&
-				<div className="space-y-2">
-					<RemoveFromLibraryBtn bookID={_id} />
-
-					<AddBookToBookshelfBtn bookID={{ _id }} />
-				</div>
-			}
-
+				<AddBookToBookshelfBtn bookID={{ _id }} />
+			</div>
 
 			{showAlert && <Alert />}
 		</div>

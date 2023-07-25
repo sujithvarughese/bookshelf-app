@@ -21,9 +21,10 @@ const Discover = () => {
 			const response = await axAPI(`/subjects/${values}.json?limit=36`);
 			const { works } = response.data;
 			// array of just keys of books in library
-			const titles = library.map(book => book.title);
+			const titles = library?.map(book => book.title);
 			// filter books to not include books already in user library
-			const worksFiltered = works.filter(book => !titles.includes(book.title));
+			// If user not logged in, titles will be empty so search will render all results
+			const worksFiltered = works.filter(book => !titles?.includes(book.title));
 			setResults(worksFiltered);
 		};
 		fetchData();

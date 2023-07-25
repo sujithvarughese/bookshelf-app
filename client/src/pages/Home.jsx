@@ -15,10 +15,11 @@ const Home = () => {
 
 
 	return (
+
 		<div className="my-4 mx-auto">
 			<div className="text-3xl">Bookshelf-app-v1</div>
 			{
-				library.map(book => {
+				library?.map(book => {
 					const { _id } = book;
 					return (
 

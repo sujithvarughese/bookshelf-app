@@ -1,20 +1,20 @@
 import express from "express";
+
 const router = express.Router();
 import {
-	getAllBooks,
+	getLibrary,
 	addBookToLibrary,
 	updateBookDetails,
-	removeBookFromLibrary,
+	removeBookFromLibrary
 } from "../controllers/bookController.js";
 
 router.route("/")
-      .get(getAllBooks)
-      .post(addBookToLibrary)
+      .get(getLibrary)
+      .post(addBookToLibrary);
 
 router.route("/:id")
       .patch(updateBookDetails)
       .delete(removeBookFromLibrary);
-
 
 
 export default router;

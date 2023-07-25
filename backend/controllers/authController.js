@@ -7,22 +7,25 @@ import { attachCookies, createJWT } from "../utils/index.js";
 const register = async (req, res) => {
 	// destructure fields from request body
 	const { lastName, firstName, email, password } = req.body;
+
 	// if any fields missing from user front end, throw error
 	if (!lastName || !firstName || !email || !password) {
 		throw new BadRequestError("Please provide all values");
 	}
 	// validate that user not already in database
+
 	const userAlreadyExists = await User.findOne({ email });
 	if (userAlreadyExists) {
 		throw new BadRequestError("User already exists");
 	}
+
 	// first registered user is admin
 	const isFirstUser = (await User.countDocuments({})) === 0;
 
 	// create new user in mongodb
 	const user = await User.create({ lastName, firstName, email, password, isAdmin: isFirstUser });
-
-	// user variable with just the fields we want to send
+	console.log(user);
+	// user variable with just the fields we want to send for token
 	const userInfo = { userID: user._id, isAdmin: user.isAdmin };
 
 	// create jwt with jwt.sign
@@ -36,7 +39,8 @@ const register = async (req, res) => {
 		user: {
 			lastName: user.lastName,
 			firstName: user.firstName,
-			email: user.email
+			email: user.email,
+			isAdmin: user.isAdmin
 		}
 	});
 };

@@ -33,19 +33,11 @@ const UserSchema = new mongoose.Schema({
 		required: [true, "please provide password"],
 		minLength: 6,
 		maxLength: 25,
-		select: false
+		select: false // hidden unless explicitly called
 	},
 	isAdmin: {
 		type: Boolean,
 		default: false
-	},
-	unit: {
-		type: mongoose.Types.ObjectId,
-		ref: "Unit"
-	},
-	tenant: {
-		type: mongoose.Types.ObjectId,
-		ref: "Tenant"
 	},
 	createdAt: {
 		type: Date,

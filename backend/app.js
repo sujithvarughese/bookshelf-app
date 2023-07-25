@@ -34,8 +34,9 @@ app.get("/", (req, res) => {
 	res.send("bookshelf-api");
 });
 
-app.use("/api/v1/library", authenticateUser, authorizePermissions, bookRouter);
-app.use("/api/v1/bookshelves", authenticateUser, authorizePermissions, bookshelfRouter);
+// all routes for books(user's library) and bookshelves need to be authenticated and authorized before access
+app.use("/api/v1/library", authenticateUser, bookRouter);
+app.use("/api/v1/bookshelves", authenticateUser, bookshelfRouter);
 app.use("/api/v1/auth", authRouter);  // login, logout, register
 
 
