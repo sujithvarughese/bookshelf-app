@@ -31,7 +31,8 @@ const initialState = {
 	user: null,
 	library: [],
 	bookshelves: [],
-	currentBookshelf: [],
+	book: null,
+	bookshelf: null,
 	isLoading: false
 };
 

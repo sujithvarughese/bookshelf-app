@@ -6,5 +6,7 @@ import Error from "./Error.jsx";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import Landing from "./Landing.jsx";
+import Book from "./Book.jsx";
+import Bookshelf from "./Bookshelf.jsx";
 
-export { Home, Library, Discover, Bookshelves, Error, Login, Register, Landing };
+export { Home, Library, Discover, Bookshelves, Error, Login, Register, Landing, Book, Bookshelf };

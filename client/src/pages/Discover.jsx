@@ -64,12 +64,10 @@ const Discover = () => {
 
 			{isLoading && <Loading />}
 
-			<div className="grid grid-cols-3 gap-12 m-12">
+			<div className="container flex flex-wrap justify-between bg-gray-100 rounded-lg">
 				{results.map((book) => {
 					return (
-						<div key={book.key}>
-							<BookAPI {...book} />
-						</div>
+						<BookAPI key={book.key} {...book} />
 					);
 				})}
 			</div>

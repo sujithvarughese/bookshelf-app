@@ -31,7 +31,8 @@ const BookSchema = new mongoose.Schema({
 	},
 	status: {
 		type: String,
-		enum: ["read", "unread", "reading"]
+		enum: ["read", "unread", "reading"],
+		default: "unread"
 	},
 	rating: {
 		type: Number,

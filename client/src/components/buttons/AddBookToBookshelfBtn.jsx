@@ -14,9 +14,9 @@ const AddBookToBookshelfBtn = (book) => {
 
 	return (
 		<div>
-			<form className="flex flex-col gap-2 z-10" onSubmit={handleSubmit}>
+			<form className="flex flex-col z-10 gap-1 mx-auto" onSubmit={handleSubmit}>
 				<select
-					className="mx-auto"
+					className=""
 					id="bookshelfAdd"
 					value={bookshelf}
 					onChange={(e) => setBookshelf(e.target.value)}
@@ -37,8 +37,8 @@ const AddBookToBookshelfBtn = (book) => {
 
 				<button
 					type="submit"
-					className="bg-teal-400 w-36 z-40 hover:z-50 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
-				>add to bookshelf
+					className="bg-teal-400 h-8 z-40 hover:z-50 mb-1 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+				>Add
 				</button>
 
 			</form>
