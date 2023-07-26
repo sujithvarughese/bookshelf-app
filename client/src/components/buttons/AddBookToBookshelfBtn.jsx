@@ -18,9 +18,9 @@ const AddBookToBookshelfBtn = ({ bookID }) => {
 
 	return (
 		<div className="">
-			<form className="flex gap-2 mx-2 justify-between" onSubmit={handleSubmit}>
+			<form className="flex gap-1 mx-2 justify-around my-2" onSubmit={handleSubmit}>
 
-				<label className="text-sm">Add to bookshelf</label>
+				<label className="text-sm mt-2">Add to bookshelf</label>
 
 				<select
 					className="border-2 h-8"

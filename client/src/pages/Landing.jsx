@@ -13,7 +13,7 @@ const Landing = () => {
 					<img src={img1} alt="img1" className="w-3/4" />
 				</div>
 
-				<div className="col-span-2 flex">
+				<div className="col-span-2 bg-stone-100 flex">
 					<img src={img2} alt="img2" className="w-3/4" />
 					<div className="m-auto text-3xl text-center">Organize your library</div>
 				</div>

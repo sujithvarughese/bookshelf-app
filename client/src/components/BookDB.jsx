@@ -41,7 +41,7 @@ const BookDB = (book) => {
 	//-----------------------------------------------------//
 
 
-	const { bookshelves, showAlert, updateBookDetails } = useGlobalContext();
+	const { bookshelves, showAlert, updateBookDetails, removeBookFromBookshelf } = useGlobalContext();
 
 	return (
 		<div
@@ -159,8 +159,13 @@ const BookDB = (book) => {
 							<div className="">
 								{
 									bookshelf ?
-										<div className="my-2">
-											In Bookshelf: {bookshelfName}
+										<div className="my-2 text-sm">
+											<span>In Bookshelf: </span>
+											<span className="font-bold mx-1">{bookshelfName}</span>
+											<button
+												className="bg-teal-400 h-8 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+												onClick={() => removeBookFromBookshelf(_id, bookshelf)}>remove
+											</button>
 										</div>
 										:
 										<AddBookToBookshelfBtn bookID={_id} />

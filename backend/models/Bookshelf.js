@@ -10,6 +10,9 @@ const BookshelfSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	description: {
+		type: String
+	},
 	books: [
 		{
 			type: mongoose.Types.ObjectId,

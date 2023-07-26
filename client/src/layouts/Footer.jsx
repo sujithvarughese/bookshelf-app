@@ -1,7 +1,7 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 const Footer = () => {
-	const { user, library, bookshelves, currentBookshelf } = useGlobalContext();
+	const { user, library, bookshelves, bookshelf } = useGlobalContext();
 
 	return (
 		<div className="m-10 text-xs">
@@ -12,7 +12,7 @@ const Footer = () => {
 				<br />
 				<button onClick={() => console.log(bookshelves)}>show bookshelves</button>
 				<br />
-				<button onClick={() => console.log(currentBookshelf)}>current bookshelf</button>
+				<button onClick={() => console.log(bookshelf)}>current bookshelf</button>
 			</div>
 			<p>&copy; Sujith Varughese 2023</p>
 		</div>

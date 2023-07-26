@@ -31,6 +31,7 @@ const initialState = {
 	user: null,
 	library: [],
 	bookshelves: [],
+	bookshelf: null,
 	isLoading: false
 };
 
@@ -192,10 +193,10 @@ const GlobalProvider = ({ children }) => {
 			await axDB.post("/bookshelves", bookshelf);
 			await getAllBookshelves();
 			await getLibrary();
-			displayAlert("Bookshelf created", "success", 1500);
+			displayAlert("BookshelfPreview created", "success", 1500);
 
 		} catch (error) {
-			displayAlert("Bookshelf could not be created", "failure", 1500);
+			displayAlert("BookshelfPreview could not be created", "failure", 1500);
 			console.log(error);
 		}
 	};
@@ -233,8 +234,12 @@ const GlobalProvider = ({ children }) => {
 	const removeBookFromBookshelf = async (book, bookshelf) => {
 		try {
 			await axDB.patch(`/bookshelves/remove/${bookshelf}`, { book });
+			await getLibrary();
 			await getAllBookshelves();
+			await getBookshelf(bookshelf);
+			displayAlert("Book deleted from bookshelf", "success", 1500);
 		} catch (error) {
+			displayAlert("Book count not be deleted", "failure", 1500);
 			console.log(error);
 		}
 	};

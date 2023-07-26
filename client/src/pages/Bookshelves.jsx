@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import NewBookshelfForm from "../components/forms/NewBookshelfForm.jsx";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { Bookshelf, Loading } from "../components";
+import { BookshelfPreview, Loading } from "../components";
 
 const Bookshelves = () => {
 
@@ -22,7 +22,7 @@ const Bookshelves = () => {
 				</div>
 
 				{isLoading && <Loading />}
-				
+
 			</div>
 
 
@@ -30,7 +30,7 @@ const Bookshelves = () => {
 				{
 					bookshelves?.map(bookshelf => {
 						return (
-							<Bookshelf key={bookshelf._id} {...bookshelf} />
+							<BookshelfPreview key={bookshelf._id} {...bookshelf} />
 						);
 					})
 				}

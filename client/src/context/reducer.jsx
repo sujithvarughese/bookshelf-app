@@ -86,7 +86,7 @@ const reducer = (state, action) => {
 	//----- login -----//
 	if (action.type === LOGOUT_USER) {
 		return {
-			...initialState,
+			...initialState
 		};
 	}
 
@@ -141,7 +141,7 @@ const reducer = (state, action) => {
 	if (action.type === GET_BOOKSHELF_SUCCESS) {
 		return {
 			...state,
-			currentBookshelf: action.payload.bookshelf,
+			bookshelf: action.payload.bookshelf,
 			isLoading: false
 		};
 	}

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.jpeg";
 import { LoginForm } from "../components/forms/index.js";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
@@ -76,14 +76,14 @@ const Navbar = () => {
 	}, [user]);
 
 	const [links, setLinks] = useState(publicLinks);
-
+	const navigate = useNavigate();
 	return (
 		<nav className="navbar">
 			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
 
 				{/* logo */}
-				<div className="w-20 ml-6">
-					<img src={logo} alt="logo" />
+				<div className="w-20 ml-6 hover:cursor-pointer">
+					<img className="rounded-xl" src={logo} alt="logo" onClick={() => navigate("/home")} />
 				</div>
 
 				{/* links (dynamically set based on user role */}

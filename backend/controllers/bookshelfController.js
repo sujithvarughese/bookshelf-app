@@ -62,20 +62,18 @@ const addBookToBookshelf = async (req, res) => {
 	res.status(StatusCodes.OK).json({ msg: `${book.title} added to ${bookshelf.name}` });
 };
 
-// PATCH - update existed bookshelf by deleting book from [books] in Bookshelf object
+// PATCH - update existed bookshelf by deleting book from [books] in BookshelfPreview object
 const removeBookFromBookshelf = async (req, res) => {
 	const bookshelf = await Bookshelf.findById(req.params.id);
 	const { books } = bookshelf;
 
-	const updatedBookList = books.filter(book => book._id.valueOf() !== req.body.book);
-	await Bookshelf.findByIdAndUpdate(
-		req.params.id,
-		{
-			...this,
-			books: updatedBookList
+	// update in book
+	await Book.findByIdAndUpdate(req.body.book, { ...this, bookshelf: null, bookshelfName: "" });
 
-		});
-	res.status(StatusCodes.OK).json({ updatedBookList });
+	// update books array in bookshelf
+	const updatedBookList = books.filter(book => book._id.valueOf() !== req.body.book);
+	await Bookshelf.findByIdAndUpdate(req.params.id, { ...this, books: updatedBookList });
+	res.status(StatusCodes.OK).json({ msg: `Bookshelf updated: ${updatedBookList}` });
 };
 
 

@@ -14,10 +14,7 @@ const Layout = () => {
 		if (user) {
 			getLibrary();
 			getAllBookshelves();
-			console.log(`navigating to user home`);
-			setTimeout(() => {
-				navigate("/home");
-			}, 1000);
+			navigate("/home");
 		}
 	}, [user]);
 
