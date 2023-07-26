@@ -1,7 +1,6 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { FormRow } from "../components/forms";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const initialState = {
 	email: "",
@@ -10,7 +9,7 @@ const initialState = {
 
 const Login = () => {
 
-	const { user, login, getLibrary, getAllBookshelves } = useGlobalContext();
+	const { login } = useGlobalContext();
 
 	// new state values for user input values
 	const [values, setValues] = useState(initialState);
@@ -31,18 +30,6 @@ const Login = () => {
 		login({ email, password });
 	};
 
-	// automatically redirect appropriately if user credentials ok
-	const navigate = useNavigate();
-	useEffect(() => {
-		if (user) {
-			getLibrary();
-			getAllBookshelves();
-			console.log(`navigating to user home`);
-			setTimeout(() => {
-				navigate("/home");
-			}, 1000);
-		}
-	}, [user]);
 
 	return (
 		<form onSubmit={handleSubmit} className="border-solid border-4 rounded-3xl w-11/12 my-20 mx-auto py-14 max-w-md">

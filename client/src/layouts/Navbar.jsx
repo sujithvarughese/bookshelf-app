@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const adminLinks = [
 	{
 		name: "home",
-		url: "/"
+		url: "/home"
 	},
 	{
 		name: "my library",
@@ -31,7 +31,7 @@ const adminLinks = [
 const memberLinks = [
 	{
 		name: "home",
-		url: "/"
+		url: "/home"
 	},
 	{
 		name: "my library",
@@ -62,7 +62,7 @@ const publicLinks = [
 const Navbar = () => {
 
 	const { user, logout } = useGlobalContext();
-	/* Whenever role changes, the nav bar will update to the appropriate links and pass the links to Navbar as props */
+	/* Whenever user changes, the nav bar will update to the appropriate links (public, member, or admin) */
 	useEffect(() => {
 		if (user) {
 			if (user.isAdmin) {
@@ -78,19 +78,21 @@ const Navbar = () => {
 	const [links, setLinks] = useState(publicLinks);
 
 	return (
-		<nav className="relative container">
+		<nav className="navbar">
 			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
 
+				{/* logo */}
 				<div className="w-20 ml-6">
 					<img src={logo} alt="logo" />
 				</div>
 
+				{/* links (dynamically set based on user role */}
 				<div className="hidden sm:flex space-x-6">
-					{links.map((links, index) => {
+					{links.map((link, index) => {
 						return (
 							<NavLink
 								key={index}
-								to={links.url}
+								to={link.url}
 								className={({ isActive }) => [
 									"px-2.5 py-1",
 									"hover:bg-teal-400",
@@ -100,12 +102,13 @@ const Navbar = () => {
 								].join(" ")
 								}
 							>
-								{links.name}
+								{link.name}
 							</NavLink>
 						);
 					})}
 				</div>
 
+				{/* if user logged in, will display "hello, user" and option to log out */}
 				{user ?
 					<div className="mx-16">
 						Hello {user.firstName}!
@@ -113,6 +116,7 @@ const Navbar = () => {
 						        onClick={logout}>logout</button>
 					</div>
 					:
+					/* if no user, will display form to log in, and link to register */
 					<div className="hidden lg:flex flex-col">
 						<LoginForm />
 						<div className="mx-24">
@@ -126,7 +130,7 @@ const Navbar = () => {
 					</div>
 				}
 
-
+				{/* small screen sizes, the whole login form will not be displayed, instead a link to a separate log in page will be displayed */}
 				<div className="lg:hidden">
 					<a
 						href="/login"

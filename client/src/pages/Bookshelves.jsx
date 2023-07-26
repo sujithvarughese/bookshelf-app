@@ -14,16 +14,19 @@ const Bookshelves = () => {
 
 	return (
 		<div className="">
-			{isLoading && <Loading />}
-
-			<div className="text-4xl m-8">My Bookshelves</div>
-
 			<div className="w-1/2 mx-auto my-12">
-				<NewBookshelfForm />
+
+				<div className="text-4xl m-8">My Bookshelves</div>
+				<div className="mx-auto my-12">
+					<NewBookshelfForm />
+				</div>
+
+				{isLoading && <Loading />}
+				
 			</div>
 
 
-			<div className="container flex flex-wrap justify-between bg-gray-100 rounded-lg">
+			<div className="flex flex-wrap justify-around bg-gray-100 rounded-lg">
 				{
 					bookshelves?.map(bookshelf => {
 						return (

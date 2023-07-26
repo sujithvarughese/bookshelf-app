@@ -31,8 +31,6 @@ const initialState = {
 	user: null,
 	library: [],
 	bookshelves: [],
-	book: null,
-	bookshelf: null,
 	isLoading: false
 };
 
@@ -134,9 +132,9 @@ const GlobalProvider = ({ children }) => {
 		}
 	};
 
-	const updateBookDetails = async (id, book) => {
+	const updateBookDetails = async (bookID, bookUpdated) => {
 		try {
-			await axDB.patch(`/library/${id}`, book);
+			await axDB.patch(`/library/${bookID}`, bookUpdated);
 			await getLibrary();
 		} catch (error) {
 			console.log(error);
@@ -203,8 +201,6 @@ const GlobalProvider = ({ children }) => {
 	};
 
 	const addBookToBookshelf = async (book, bookshelf) => {
-		console.log(book);
-		console.log(bookshelf);
 		try {
 			await axDB.patch(`/bookshelves/add/${bookshelf}`, { book });
 			await getLibrary();

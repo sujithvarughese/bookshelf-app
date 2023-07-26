@@ -18,7 +18,6 @@ const addBookToLibrary = async (req, res) => {
 		user: req.user.userID,
 		title: req.body.title
 	});
-	console.log(duplicate);
 	if (duplicate) {
 		throw new BadRequestError("Book already in Library!");
 	}
@@ -41,12 +40,12 @@ const removeBookFromLibrary = async (req, res) => {
 	console.log(req.params.id);
 	const book = await Book.findById(req.params.id);
 
-	if (book.inBookshelf !== null) {
-		const bookshelf = await Bookshelf.findById(book.inBookshelf);
+	if (book.bookshelf) {
+		const bookshelf = await Bookshelf.findById(book.bookshelf);
 		const updatedBooks = bookshelf.books.filter(book => book._id !== req.params.id);
-		await Bookshelf.findByIdAndUpdate(book.inBookshelf, { ...bookshelf, books: updatedBooks });
+		await Bookshelf.findByIdAndUpdate(book.bookshelf, { ...bookshelf, books: updatedBooks });
 	}
-
+	console.log(book);
 	await Book.findByIdAndDelete(req.params.id);
 	res.status(StatusCodes.OK).json("successfully removed from library");
 };

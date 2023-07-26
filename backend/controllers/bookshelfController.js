@@ -38,13 +38,17 @@ const addBookToBookshelf = async (req, res) => {
 
 	const bookshelf = await Bookshelf.findById(req.params.id);
 	const { books } = bookshelf;
+
 	// make sure book not in bookshelf by comparing book._id (stored in req.body.bookID) with books in bookshelf
+	// (even though already verified in front end)
 	const duplicate = books.find(book => book._id.valueOf() === req.body.book);
 	if (duplicate) {
 		throw new BadRequestError("Book already in current bookshelf");
 	}
 	const book = await Book.findById(req.body.book);
-	if (book.inBookshelf) {
+
+	// verify again book is not in a bookshelf
+	if (book.bookshelf !== null) {
 		throw new BadRequestError("Book in another bookshelf");
 	}
 	// update array of books in bookshelf to include new book
@@ -53,10 +57,11 @@ const addBookToBookshelf = async (req, res) => {
 	// update bookshelf with updated books array
 	await Bookshelf.findByIdAndUpdate(req.params.id, { ...bookshelf, books: books });
 
-	// update book with reference to bookshelf
-	await Book.findByIdAndUpdate(req.body.book, { ...this, inBookshelf: req.params.id });
-	res.status(StatusCodes.OK).json({ books });
+	// update book with reference to bookshelf and bookshelf name
+	await Book.findByIdAndUpdate(req.body.book, { ...this, bookshelf: bookshelf, bookshelfName: bookshelf.name });
+	res.status(StatusCodes.OK).json({ msg: `${book.title} added to ${bookshelf.name}` });
 };
+
 // PATCH - update existed bookshelf by deleting book from [books] in Bookshelf object
 const removeBookFromBookshelf = async (req, res) => {
 	const bookshelf = await Bookshelf.findById(req.params.id);

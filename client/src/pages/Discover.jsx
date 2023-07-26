@@ -3,6 +3,7 @@ import { axAPI, axDB } from "../utils/ax.jsx";
 import { BookAPI, Loading } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
+
 // page will allow user to search for books to add to his/her library
 const Discover = () => {
 
@@ -43,6 +44,8 @@ const Discover = () => {
 
 				<div className="text-4xl m-8">Discover</div>
 
+				{/* search bar to discover by genre */}
+
 				<form className="flex gap-6" onSubmit={handleSubmit}>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -64,7 +67,7 @@ const Discover = () => {
 
 			{isLoading && <Loading />}
 
-			<div className="container flex flex-wrap justify-between bg-gray-100 rounded-lg">
+			<div className="flex flex-wrap justify-around bg-gray-100 rounded-lg">
 				{results.map((book) => {
 					return (
 						<BookAPI key={book.key} {...book} />

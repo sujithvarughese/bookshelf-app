@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Login, Register, Library, Discover, Bookshelves, Error, Landing, Bookshelf, Book } from "./pages";
+import { Home, Login, Register, Library, Discover, Bookshelves, Error, Landing } from "./pages";
 import Layout from "./layouts/Layout.jsx";
 import ProtectedRoute from "./layouts/ProtectedRoute.jsx";
 
@@ -25,21 +25,9 @@ const App = () => {
 						</ProtectedRoute>
 					} />
 
-					<Route path="/library/:id" element={
-						<ProtectedRoute>
-							<Book />
-						</ProtectedRoute>
-					} />
-
 					<Route path="/bookshelves" element={
 						<ProtectedRoute>
 							<Bookshelves />
-						</ProtectedRoute>
-					} />
-
-					<Route path="/bookshelves/:id" element={
-						<ProtectedRoute>
-							<Bookshelf />
 						</ProtectedRoute>
 					} />
 

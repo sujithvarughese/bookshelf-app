@@ -26,14 +26,15 @@ const BookAPI = (book) => {
 	// add when pulling book summary -> {showDetails && <BookDetails {...book} />}
 	return (
 		<div
-			className="hover:bg-gray-200 m-6 bg-white hover:z-0 rounded-lg overflow-hidden shadow-lg py-8 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">
+			className="hover:bg-gray-100 m-6 bg-white hover:z-0 rounded-lg overflow-hidden shadow-lg py-8 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">
 
 			<div>
-				<img className="h-64 w-40 mx-auto rounded-lg shadow-md"
-				     src={`https://covers.openlibrary.org/b/id/${cover_id}-M.jpg`} alt={title} />
+				<img className="h-64 w-40 mx-auto my-4 rounded-lg shadow-md"
+				     src={`https://covers.openlibrary.org/b/id/${cover_id}-M.jpg`} alt={title}
+				/>
 			</div>
 
-			<div className="text-2xl leading-tight py-2 hover:cursor-pointer hover:text-teal-800"
+			<div className="text-2xl leading-tight py-2"
 			     onClick={() => setShowDetails(!showDetails)}>{title}
 			</div>
 
@@ -52,7 +53,7 @@ const BookAPI = (book) => {
 			{
 				user !== null && !addedToLibrary &&
 				<button
-					className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+					className="bg-teal-400 m-4 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
 					onClick={() => addBookAPI(book)}
 				>add to library
 				</button>
@@ -60,35 +61,6 @@ const BookAPI = (book) => {
 
 			{showAlert && addedToLibrary && <Alert />}
 
-		</div>
-	);
-};
-
-// component will render if user clicks book title to display book details
-const BookDetails = (book) => {
-
-	const { _id, firstPublishYear, subject, genre, pages, status, rating, userRating, notes } = book;
-	const { user, bookshelves, showAlert } = useGlobalContext();
-	console.log(book);
-
-
-	return (
-		<div className="flex flex-col gap-4 my-4">
-			<div>
-				Year published: {firstPublishYear}
-			</div>
-
-			<div>
-				{genre}
-				{pages}
-				{status}
-				{rating}
-				{userRating}
-				{notes}
-			</div>
-
-
-			{showAlert && <Alert />}
 		</div>
 	);
 };

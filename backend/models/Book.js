@@ -45,12 +45,16 @@ const BookSchema = new mongoose.Schema({
 		max: 10
 	},
 	notes: {
-		type: String
+		type: String,
+		default: ""
 	},
-	inBookshelf: {
+	bookshelf: {
 		type: mongoose.Types.ObjectId,
 		ref: "Bookshelf",
 		default: null
+	},
+	bookshelfName: {
+		type: String
 	},
 	createdAt: {
 		type: Date,

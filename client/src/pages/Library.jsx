@@ -14,12 +14,14 @@ const Library = () => {
 	// display each book as a component
 	return (
 		<div className="">
-			<div className="text-4xl m-8">My Library</div>
+			<div className="w-1/2 mx-auto my-12">
+				<div className="text-4xl m-8">My Library</div>
+			</div>
 
 			{isLoading && <Loading />}
 
 			<div
-				className="container flex flex-wrap justify-between bg-gray-100 rounded-lg">
+				className="flex flex-wrap justify-around bg-gray-100 rounded-lg">
 				{
 					library?.map(book => {
 						const { _id } = book;

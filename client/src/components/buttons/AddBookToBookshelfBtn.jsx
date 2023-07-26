@@ -1,25 +1,32 @@
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 
-const AddBookToBookshelfBtn = (book) => {
+const AddBookToBookshelfBtn = ({ bookID }) => {
 
+	// load bookshelves for form
 	const { bookshelves, addBookToBookshelf } = useGlobalContext();
 
-	const [bookshelf, setBookshelf] = useState(bookshelves[0]?._id);
+	// state for option select in form
+	const [bookshelfID, setBookshelfID] = useState(bookshelves[0]._id);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addBookToBookshelf(book._id, bookshelf);
+
+		addBookToBookshelf(bookID, bookshelfID);
 	};
 
+
 	return (
-		<div>
-			<form className="flex flex-col z-10 gap-1 mx-auto" onSubmit={handleSubmit}>
+		<div className="">
+			<form className="flex gap-2 mx-2 justify-between" onSubmit={handleSubmit}>
+
+				<label className="text-sm">Add to bookshelf</label>
+
 				<select
-					className=""
-					id="bookshelfAdd"
-					value={bookshelf}
-					onChange={(e) => setBookshelf(e.target.value)}
+					className="border-2 h-8"
+					name="bookshelf"
+					value={bookshelfID}
+					onChange={(e) => setBookshelfID(e.target.value)}
 				>
 					{
 						bookshelves.map((bookshelf, index) => {
@@ -37,7 +44,7 @@ const AddBookToBookshelfBtn = (book) => {
 
 				<button
 					type="submit"
-					className="bg-teal-400 h-8 z-40 hover:z-50 mb-1 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+					className="bg-teal-400 h-8 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
 				>Add
 				</button>
 
