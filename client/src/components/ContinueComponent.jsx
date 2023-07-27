@@ -38,9 +38,9 @@ const ContinueComponent = () => {
 					:
 					<div className="flex flex-wrap justify-around bg-gray-100 rounded-lg">
 						{
-							continueReading.map(book => {
+							continueReading.map((book, index) => {
 								return (
-									<BookDB key={book.title} {...book} />
+									<BookDB key={index} {...book} />
 								);
 							})
 						}
