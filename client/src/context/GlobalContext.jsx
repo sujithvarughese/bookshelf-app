@@ -5,6 +5,7 @@ import { axDB } from "../utils/ax.jsx";
 import {
 	DISPLAY_ALERT,
 	CLEAR_ALERT,
+	SET_LOADING,
 	REGISTER_USER_BEGIN,
 	REGISTER_USER_SUCCESS,
 	REGISTER_USER_ERROR,
@@ -56,6 +57,12 @@ const GlobalProvider = ({ children }) => {
 		}, ms);
 	};
 
+	const setLoading = (loadingBool) => {
+		dispatch({
+			type: SET_LOADING,
+			payload: { loadingBool }
+		});
+	};
 	//----- auth -----//
 	const register = async (credentials) => {
 		dispatch({ type: REGISTER_USER_BEGIN });
@@ -251,6 +258,7 @@ const GlobalProvider = ({ children }) => {
 				displayAlert,
 				clearAlert,
 				register,
+				setLoading,
 				login,
 				logout,
 				getLibrary,

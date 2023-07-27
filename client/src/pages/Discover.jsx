@@ -3,7 +3,6 @@ import { axAPI, axDB } from "../utils/ax.jsx";
 import { BookAPI, Loading } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
-
 // page will allow user to search for books to add to his/her library
 const Discover = () => {
 
@@ -21,7 +20,7 @@ const Discover = () => {
 		const fetchData = async () => {
 			const response = await axAPI(`/subjects/${values}.json?limit=36`);
 			const { works } = response.data;
-			// array of just keys of books in library
+			// array of just titles of books in library
 			const titles = library?.map(book => book.title);
 			// filter books to not include books already in user library
 			// If user not logged in, titles will be empty so search will render all results

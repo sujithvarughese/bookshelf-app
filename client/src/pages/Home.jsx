@@ -1,35 +1,24 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect, useState } from "react";
-import { BookDB } from "../components/index.js";
-
+import { BookDB, ContinueComponent, DiscoverComponent, Loading } from "../components";
 
 const Home = () => {
 
-	const { library, getLibrary, getAllBookshelves } = useGlobalContext();
-
-	const [continueReading, setContinueReading] = useState([]);
-
-	// when initial program renders, users library and bookshelves(unpopulated) automatically loaded into global state
-	useEffect(() => {
-		const books = library.map(book => book.status === "reading");
-		setContinueReading(books);
-	}, []);
+	const { library, getLibrary, getAllBookshelves, isLoading } = useGlobalContext();
 
 
 	return (
 
-		<div className="my-4 mx-auto">
-			<div className="text-3xl">Bookshelf-app-v1</div>
-			{
-				library?.map(book => {
-					const { _id } = book;
-					return (
+		<div className="flex flex-col gap-12">
+			<div className="w-1/2 mx-auto mt-12">
+				<div className="text-4xl mx-8">Home</div>
+			</div>
 
-						<BookDB key={_id} {...book} />
-
-
-					);
-				})}
+			{isLoading && <Loading />}
+			<>
+				<DiscoverComponent />
+				<ContinueComponent />
+			</>
 		</div>
 	);
 };

@@ -62,7 +62,7 @@ const BookDB = (book) => {
 						</div>
 
 
-						<div className="text-l leading-tight py-1 hover:cursor-pointer hover:text-teal-800"
+						<div className="text-lg leading-tight py-1 hover:cursor-pointer hover:text-teal-800"
 						     onClick={() => setShowDetails(!showDetails)}>
 							{title}
 						</div>

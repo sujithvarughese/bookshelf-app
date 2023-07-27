@@ -1,6 +1,7 @@
 import {
 	DISPLAY_ALERT,
 	CLEAR_ALERT,
+	SET_LOADING,
 	REGISTER_USER_BEGIN,
 	REGISTER_USER_SUCCESS,
 	REGISTER_USER_ERROR,
@@ -22,6 +23,13 @@ import {
 import { initialState } from "./GlobalContext.jsx";
 
 const reducer = (state, action) => {
+
+	if (action.type === SET_LOADING) {
+		return {
+			...state,
+			isLoading: action.payload.loadingBool
+		};
+	}
 
 	//----- alerts -----//
 	if (action.type === DISPLAY_ALERT) {

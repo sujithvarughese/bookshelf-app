@@ -10,11 +10,16 @@ const Layout = () => {
 	const { user, getLibrary, getAllBookshelves } = useGlobalContext();
 	// automatically redirect appropriately if user credentials ok
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		if (user) {
 			getLibrary();
 			getAllBookshelves();
-			navigate("/home");
+			console.log("navigating home...");
+			setTimeout(() => {
+				navigate("/home");
+			}, 1500);
+
 		}
 	}, [user]);
 

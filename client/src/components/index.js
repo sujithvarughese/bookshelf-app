@@ -3,6 +3,8 @@ import BookAPI from "./BookAPI.jsx";
 import Loading from "./Loading.jsx";
 import Alert from "./Alert.jsx";
 import BookshelfPreview from "./BookshelfPreview.jsx";
+import ContinueComponent from "./ContinueComponent.jsx";
+import DiscoverComponent from "./DiscoverComponenet.jsx";
 
 
 export {
@@ -10,5 +12,7 @@ export {
 	BookAPI,
 	BookshelfPreview,
 	Loading,
-	Alert
+	Alert,
+	ContinueComponent,
+	DiscoverComponent
 };
