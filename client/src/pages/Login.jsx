@@ -44,11 +44,11 @@ const Login = () => {
 
 				<button type="submit"
 				        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
-					login
+					Login
 				</button>
 
 				<div>
-					<span>Not a member yet?</span>
+					<span>Not a Member Yet?</span>
 					<a href="/register">Register</a>
 				</div>
 			</div>

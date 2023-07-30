@@ -63,12 +63,12 @@ const Register = () => {
 
 				<button type="submit"
 				        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
-					register
+					Register
 				</button>
 
 				<div>
 					<span>Already a member?</span>
-					<a href='/login'>Login</a>
+					<a href="/login">Login</a>
 				</div>
 			</div>
 

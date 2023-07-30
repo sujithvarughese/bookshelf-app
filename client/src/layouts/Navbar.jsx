@@ -6,23 +6,23 @@ import { useEffect, useState } from "react";
 
 const adminLinks = [
 	{
-		name: "home",
+		name: "Home",
 		url: "/home"
 	},
 	{
-		name: "my library",
+		name: "My Library",
 		url: "/library"
 	},
 	{
-		name: "discover",
+		name: "Discover",
 		url: "/discover"
 	},
 	{
-		name: "bookshelves",
+		name: "Bookshelves",
 		url: "/bookshelves"
 	},
 	{
-		name: "members",
+		name: "Members",
 		url: "/members"
 	}
 
@@ -30,30 +30,30 @@ const adminLinks = [
 
 const memberLinks = [
 	{
-		name: "home",
+		name: "Home",
 		url: "/home"
 	},
 	{
-		name: "my library",
+		name: "My Library",
 		url: "/library"
 	},
 	{
-		name: "discover",
+		name: "Discover",
 		url: "/discover"
 	},
 	{
-		name: "bookshelves",
+		name: "Bookshelves",
 		url: "/bookshelves"
 	}
 ];
 
 const publicLinks = [
 	{
-		name: "home",
+		name: "Home",
 		url: "/"
 	},
 	{
-		name: "discover",
+		name: "Discover",
 		url: "/discover"
 	}
 ];
