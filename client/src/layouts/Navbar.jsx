@@ -73,6 +73,11 @@ const Navbar = () => {
 	const [links, setLinks] = useState(publicLinks);
 	const navigate = useNavigate();
 
+	const handleLogout = () => {
+		logout()
+		navigate("/")
+	}
+
 	return (
 		<nav className="navbar">
 			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
@@ -109,7 +114,7 @@ const Navbar = () => {
 					<div className="mx-16">
 						Hello {user.firstName}!
 						<button className="mx-2 my-4 py-1 px-3 bg-teal-400 rounded-full hover:text-white" type="submit"
-						        onClick={logout}>Logout</button>
+						        onClick={handleLogout}>Logout</button>
 					</div>
 					:
 					/* if no user, will display form to log in, and link to register */
