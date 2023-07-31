@@ -121,11 +121,8 @@ const Navbar = () => {
 						<LoginForm />
 						<div className="mx-24">
 							Not a member yet?
-							<a
-								href="/register"
-								className="underline decoration-1 hover:text-white hover:bg-teal-200 rounded-full px-1"
-							>Register
-							</a>
+							<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+							         to="/register">Register</NavLink>
 						</div>
 					</div>
 				}
