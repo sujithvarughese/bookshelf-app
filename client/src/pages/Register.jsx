@@ -36,7 +36,7 @@ const Register = () => {
 	// automatically redirect appropriately if user credentials ok
 	const navigate = useNavigate();
 	useEffect(() => {
-		if (user) {
+		if (user && Object.keys(user).length > 0) {
 			console.log(`navigating to user home`);
 			setTimeout(() => {
 				navigate("/home");
@@ -62,7 +62,7 @@ const Register = () => {
 				         handleChange={handleChange} />
 
 				<button type="submit"
-				        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
+				        className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
 					Register
 				</button>
 

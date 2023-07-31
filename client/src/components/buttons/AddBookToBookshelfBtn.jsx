@@ -7,7 +7,7 @@ const AddBookToBookshelfBtn = ({ bookID }) => {
 	const { bookshelves, addBookToBookshelf } = useGlobalContext();
 
 	// state for option select in form
-	const [bookshelfID, setBookshelfID] = useState(bookshelves[0]._id);
+	const [bookshelfID, setBookshelfID] = useState(bookshelves[0]?._id);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

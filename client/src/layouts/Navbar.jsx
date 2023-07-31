@@ -64,7 +64,7 @@ const Navbar = () => {
 	const { user, logout } = useGlobalContext();
 	/* Whenever user changes, the nav bar will update to the appropriate links (public, member, or admin) */
 	useEffect(() => {
-		if (user) {
+		if (user && Object.keys(user).length > 0) {
 			if (user.isAdmin) {
 				setLinks(adminLinks);
 				return;
@@ -109,11 +109,11 @@ const Navbar = () => {
 				</div>
 
 				{/* if user logged in, will display "hello, user" and option to log out */}
-				{user ?
+				{user && Object.keys(user).length > 0 ?
 					<div className="mx-16">
 						Hello {user.firstName}!
 						<button className="mx-2 my-4 py-1 px-3 bg-teal-400 rounded-full hover:text-white" type="submit"
-						        onClick={logout}>logout</button>
+						        onClick={logout}>Logout</button>
 					</div>
 					:
 					/* if no user, will display form to log in, and link to register */

@@ -12,7 +12,7 @@ const Layout = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (user) {
+		if (user && Object.keys(user).length > 0) {
 			getLibrary();
 			getAllBookshelves();
 			console.log("navigating home...");

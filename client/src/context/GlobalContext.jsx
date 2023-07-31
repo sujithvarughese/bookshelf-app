@@ -29,7 +29,7 @@ const initialState = {
 	alertText: "",
 	alertStyle: "",
 	showAlert: false,
-	user: null,
+	user: {},
 	library: [],
 	bookshelves: [],
 	bookshelf: null,
