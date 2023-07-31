@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { FormRow } from "../components/forms";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const initialState = {
 	email: "",
@@ -43,13 +44,14 @@ const Login = () => {
 				         handleChange={handleChange} />
 
 				<button type="submit"
-				        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
+				        className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
 					Login
 				</button>
 
 				<div>
 					<span>Not a Member Yet?</span>
-					<a href="/register">Register</a>
+					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+					         to="/register">Register</NavLink>
 				</div>
 			</div>
 

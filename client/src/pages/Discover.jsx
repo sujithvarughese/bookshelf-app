@@ -6,7 +6,7 @@ import { useGlobalContext } from "../context/GlobalContext.jsx";
 // page will allow user to search for books to add to his/her library
 const Discover = () => {
 
-	const { library, isLoading, getLibrary } = useGlobalContext();
+	const { library, isLoading } = useGlobalContext();
 
 	// state for search values as user types
 	const [values, setValues] = useState("");

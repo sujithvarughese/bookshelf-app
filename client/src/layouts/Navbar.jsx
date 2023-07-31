@@ -5,10 +5,12 @@ import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect, useState } from "react";
 
 const adminLinks = [
-	{
-		name: "Home",
-		url: "/home"
-	},
+	/*
+	 {
+	 name: "Home",
+	 url: "/home"
+	 },
+	 */
 	{
 		name: "My Library",
 		url: "/library"
@@ -29,10 +31,12 @@ const adminLinks = [
 ];
 
 const memberLinks = [
-	{
-		name: "Home",
-		url: "/home"
-	},
+	/*
+	 {
+	 name: "Home",
+	 url: "/home"
+	 },
+	 */
 	{
 		name: "My Library",
 		url: "/library"
@@ -47,16 +51,7 @@ const memberLinks = [
 	}
 ];
 
-const publicLinks = [
-	{
-		name: "Home",
-		url: "/"
-	},
-	{
-		name: "Discover",
-		url: "/discover"
-	}
-];
+const publicLinks = [];
 
 
 const Navbar = () => {
@@ -77,13 +72,14 @@ const Navbar = () => {
 
 	const [links, setLinks] = useState(publicLinks);
 	const navigate = useNavigate();
+
 	return (
 		<nav className="navbar">
 			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
 
 				{/* logo */}
 				<div className="w-20 ml-6 hover:cursor-pointer">
-					<img className="rounded-xl" src={logo} alt="logo" onClick={() => navigate("/home")} />
+					<img className="rounded-xl" src={logo} alt="logo" onClick={() => navigate("/")} />
 				</div>
 
 				{/* links (dynamically set based on user role */}
@@ -129,16 +125,10 @@ const Navbar = () => {
 
 				{/* small screen sizes, the whole login form will not be displayed, instead a link to a separate log in page will be displayed */}
 				<div className="lg:hidden">
-					<a
-						href="/login"
-						className="underline decoration-1 hover:text-white hover:bg-teal-200 rounded-full px-1"
-					>Login
-					</a>
-					<a
-						href="/register"
-						className="underline decoration-1 hover:text-white hover:bg-teal-200 rounded-full px-1"
-					>Register
-					</a>
+					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+					         to="/login">Login</NavLink>
+					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+					         to="/register">Register</NavLink>
 				</div>
 
 

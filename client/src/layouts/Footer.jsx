@@ -1,11 +1,15 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 const Footer = () => {
-	const { user, library, bookshelves, bookshelf } = useGlobalContext();
+	const { user, library, bookshelves, bookshelf, state } = useGlobalContext();
 
 	return (
 		<div className="m-10 text-xs">
-			<div className="test">
+
+			<div className="test flex gap-1">
+				For state testing:
+				<button onClick={() => console.log(state)}>show state</button>
+				<br />
 				<button onClick={() => console.log(user)}>show user</button>
 				<br />
 				<button onClick={() => console.log(library)}>show library</button>

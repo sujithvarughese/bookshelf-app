@@ -9,6 +9,8 @@ const DiscoverComponent = () => {
 
 	// books displayed to user from subjects
 	const numBooksToDiscover = 4;
+
+	// global state not needed as we only need for this component
 	const [booksToDiscover, setBooksToDiscover] = useState([]);
 
 
@@ -20,10 +22,11 @@ const DiscoverComponent = () => {
 			// array of all subjects from books in user library
 			const allSubjects = library.map(book => book.subject).flat();
 
+			// if user has no books, then just use popular genres
 			if (library.length === 0) {
 				allSubjects.push("popular", "new", "action", "romance", "comedy", "adventure");
 			}
-
+			console.log(allSubjects);
 			while (books.length < numBooksToDiscover) {
 				// choose one subject at random from allSubjects
 				const subject = allSubjects[Math.floor(Math.random() * allSubjects.length)];
@@ -37,7 +40,9 @@ const DiscoverComponent = () => {
 
 				// array of just titles of books in library
 				const titles = library.map(book => book.title);
-				// first book from works array that is not already in the user's library
+				// array of just titles on books in current booksToDiscover state array
+
+				// first book from works array that is not already in the user's library and not in booksToDiscover array
 				const bookToAdd = works.find(book => !titles.includes(book.title));
 
 				// add book to temporary array, then set array to booksToDiscoverState
@@ -58,7 +63,9 @@ const DiscoverComponent = () => {
 
 	return (
 		<div className="">
+
 			{
+				// render text and books only when books array to be displayed is filled
 				booksToDiscover.length === numBooksToDiscover &&
 				<div className="bg-gray-100 text-xl">Our hand-picked selections just for you!</div>
 			}

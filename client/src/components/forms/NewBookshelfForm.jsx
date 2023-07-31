@@ -11,7 +11,7 @@ const initialState = {
 };
 const NewBookshelfForm = () => {
 
-	const { createBookshelf, showAlert } = useGlobalContext();
+	const { createBookshelf, displayAlert } = useGlobalContext();
 	// state for search values as user types
 	const [values, setValues] = useState(initialState);
 
@@ -33,7 +33,7 @@ const NewBookshelfForm = () => {
 				className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 				type="text"
 				name="name"
-				placeholder="New BookshelfPreview Name"
+				placeholder="New Bookshelf Name"
 				value={values.name}
 				onChange={handleChange}
 			/>
@@ -43,7 +43,6 @@ const NewBookshelfForm = () => {
 			>
 				create bookshelf
 			</button>
-			{showAlert && <Alert />}
 		</form>
 
 	);

@@ -35,7 +35,7 @@ const reducer = (state, action) => {
 	if (action.type === DISPLAY_ALERT) {
 		return {
 			...state,
-			alertType: action.payload.alertStyle,
+			alertStyle: action.payload.alertStyle,
 			alertText: action.payload.alertText,
 			showAlert: true
 		};

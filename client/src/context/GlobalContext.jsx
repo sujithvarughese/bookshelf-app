@@ -43,15 +43,15 @@ const GlobalProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	// alert text, styles, and time in ms to be displayed
-	const displayAlert = (alertText, style, ms) => {
+	const displayAlert = (alertText, alertStyle, ms) => {
 		dispatch({
 			type: DISPLAY_ALERT,
-			payload: { alertText, style }
+			payload: { alertText, alertStyle }
 		});
 		clearAlert(ms);
 	};
 
-	const clearAlert = (ms) => {
+	const clearAlert = (ms = 2000) => {
 		setTimeout(() => {
 			dispatch({ type: CLEAR_ALERT });
 		}, ms);
@@ -133,7 +133,7 @@ const GlobalProvider = ({ children }) => {
 				subject: subject
 			});
 			await getLibrary();
-			displayAlert("Book added", "success", 1500);
+			displayAlert("Book added", "success");
 		} catch (error) {
 			displayAlert("Book count not be added", "failure", 1500);
 			console.log(error);
@@ -144,6 +144,7 @@ const GlobalProvider = ({ children }) => {
 		try {
 			await axDB.patch(`/library/${bookID}`, bookUpdated);
 			await getLibrary();
+			displayAlert("Book Updated!", "success");
 		} catch (error) {
 			console.log(error);
 		}
@@ -201,7 +202,6 @@ const GlobalProvider = ({ children }) => {
 			await getAllBookshelves();
 			await getLibrary();
 			displayAlert("BookshelfPreview created", "success", 1500);
-
 		} catch (error) {
 			displayAlert("BookshelfPreview could not be created", "failure", 1500);
 			console.log(error);
@@ -233,6 +233,7 @@ const GlobalProvider = ({ children }) => {
 		try {
 			await axDB.delete(`/bookshelves/${bookshelfID}`);
 			await getAllBookshelves();
+			displayAlert("Bookshelf deleted", "success", 1500);
 		} catch (error) {
 			console.log(error);
 		}

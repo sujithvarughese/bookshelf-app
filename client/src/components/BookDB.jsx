@@ -1,8 +1,6 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useState } from "react";
 import { AddBookToBookshelfBtn, RemoveFromLibraryBtn, EditBookBtn } from "./buttons/index.js";
-import { Alert } from "../components";
-import { FormRow, FormRowSelect } from "./forms";
 
 // book when called from database
 const BookDB = (book) => {
@@ -41,14 +39,14 @@ const BookDB = (book) => {
 	//-----------------------------------------------------//
 
 
-	const { bookshelves, showAlert, updateBookDetails, removeBookFromBookshelf } = useGlobalContext();
+	const { displayAlert, showAlert, updateBookDetails, removeBookFromBookshelf } = useGlobalContext();
 
 	return (
 		<div
 			className="m-6 bg-white rounded-lg overflow-hidden shadow-lg lg:w-1/4 md:w-1/3 sm:w-1/2"
 		>
 			{
-				showDetails ?
+				showDetails ? // false by default
 					/* detailed view (when book is clicked) */
 					<div className="book-detailed-view my-4">
 						<div>
@@ -62,7 +60,7 @@ const BookDB = (book) => {
 						</div>
 
 
-						<div className="text-lg leading-tight py-1 hover:cursor-pointer hover:text-teal-800"
+						<div className="text-lg leading-tight py-1 hover:cursor-pointer hover:text-teal-500"
 						     onClick={() => setShowDetails(!showDetails)}>
 							{title}
 						</div>
@@ -189,8 +187,6 @@ const BookDB = (book) => {
 							</div>
 
 						</div>
-
-						{showAlert && <Alert />}
 					</div>
 
 					:

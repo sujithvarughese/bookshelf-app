@@ -1,74 +1,82 @@
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import bookshelfImages from "../../assets/images/bookshelves/index.js";
 import { useState } from "react";
-import { FormRowSelect, updateBookDetailsForm } from "./index.js";
-import { FormRow } from "./index.js";
-import { Form } from "react-router-dom";
 
+// implement into bookDB
+const UpdateBookDetailsForm = ({ book, setEditMode }) => {
 
-const UpdateBookDetailsForm = (book) => {
-
-	const { updateBookDetails } = useGlobalContext();
-	const [values, setValues] = useState(...book)
-
-	const { title, authors, coverID, firstPublishYear, subject, genre, pages, status, rating, userRating, notes } = book;
+	const { updateBookDetails, displayAlert } = useGlobalContext();
+	const [values, setValues] = useState({ ...book });
 
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
-	}
+	};
 
 	const handleSubmit = (e) => {
-		e.preventDefault()
-		console.log({ ...book, values });
-		//updateBookDetails({ ...book, values });
-	}
+		e.preventDefault();
+		updateBookDetails(book._id, values);
+		displayAlert("Book Updated!", "success", 1500);
+		setEditMode(false);
+	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div className="text-4xl m-8">Edit Book details</div>
+		<form className="px-2" onSubmit={handleSubmit}>
 
-			<div className="m-10 space-y-10">
+			<div className="flex">
+				<div className="text-sm flex">
 
-				<div>
-					<img
-						className="h-64 w-40 mx-auto rounded-lg shadow-md"
-						src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`}
-						alt={title} />
+					<label htmlFor="status" className="form-label">
+						Status:
+					</label>
+
+					<select
+						name="status"
+						value={values.status}
+						onChange={handleChange}
+						className="form-select w-1/2 mb-1"
+					>
+						<option value="unread">unread</option>
+						<option value="completed">completed</option>
+						<option value="reading">reading</option>
+					</select>
+
 				</div>
 
-
-				<div className="text-2xl leading-tight py-2 hover:cursor-pointer hover:text-teal-800">{title}</div>
-
-				<div className="text-gray-500">
-					{
-						authors.map((author, index) => {
-							return <div key={index}>{author}</div>;
-						})
-					}
+				<div className="text-sm flex">
+					<label htmlFor="userRating" className="form-label">
+						Rating:
+					</label>
+					<select
+						name="userRating"
+						value={values.userRating}
+						onChange={handleChange}
+						className="form-select mb-1"
+					>
+						<option value={1}>1</option>
+						<option value={2}>2</option>
+						<option value={3}>3</option>
+						<option value={4}>4</option>
+						<option value={5}>5</option>
+						<option value={6}>6</option>
+						<option value={7}>7</option>
+						<option value={8}>8</option>
+						<option value={9}>9</option>
+						<option value={10}>10</option>
+					</select>
 				</div>
-
-				<div>
-					Year published: {firstPublishYear}
-				</div>
-
-				<FormRow labelText="genre" placeholder="genre" type="text" name="genre" value={values.genre}
-				         handleChange={handleChange} />
-
-				<FormRow labelText="notes" placeholder="notes" type="text" name="notes" value={values.notes}
-				         handleChange={handleChange} />
-
-				<FormRowSelect labelText="status" name="status" value={values.status} list={["read", "unread", "reading"]}
-				               handleChange={handleChange}></FormRowSelect>
-
-				<FormRowSelect labelText="my rating" name="userRating" value={values.userRating}
-				               list={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} handleChange={handleChange}></FormRowSelect>
-
-				<button
-					className="bg-teal-400 hover:bg-blue-700 hover:z-50 text-white font-bold py-2 px-2 rounded text-xs"
-					type="submit"
-				>update book details
-				</button>
 			</div>
+
+
+			<div className="text-sm">
+				<label htmlFor="notes">Notes: </label>
+				<textarea
+					className="bg-color-grey shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					name="notes" rows={8} value={values.notes} onChange={handleChange} />
+			</div>
+
+
+			<button
+				className="mx-6 my-1.5 text-white py-1 px-8 bg-teal-400 rounded-lg hover:text-black text-white font-bold ">Save
+			</button>
 		</form>
 
 	);

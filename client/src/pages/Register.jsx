@@ -1,7 +1,7 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { FormRow } from "../components/forms";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const initialState = {
 	lastName: "",
@@ -68,7 +68,8 @@ const Register = () => {
 
 				<div>
 					<span>Already a member?</span>
-					<a href="/login">Login</a>
+					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+					         to="/login">Login</NavLink>
 				</div>
 			</div>
 

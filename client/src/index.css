@@ -9,12 +9,6 @@
     }
 }
 
-.loading {
-    width: 6rem;
-    height: 6rem;
-    border: 5px solid grey;
-    border-radius: 50%;
-    border-top-color: dodgerblue;
-    animation: spinner 2s linear infinite;
-    margin: auto
-}
+
+
+
