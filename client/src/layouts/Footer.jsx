@@ -6,7 +6,7 @@ const Footer = () => {
 	return (
 		<div className="m-10 text-xs">
 
-			<div className="test flex gap-1">
+			<div className="test flex gap-1 hidden">
 				For state testing:
 				<button onClick={() => console.log(state)}>show state</button>
 				<br />
