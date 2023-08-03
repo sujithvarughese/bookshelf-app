@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { axAPI } from "../utils/ax.jsx";
 import { BookAPI, Loading } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
@@ -6,10 +6,11 @@ import { useGlobalContext } from "../context/GlobalContext.jsx";
 // page will allow user to search for books to add to his/her library
 const Discover = () => {
 
-	const { library, isLoading } = useGlobalContext();
+	const { library, isLoading, getLibrary } = useGlobalContext();
 
 	// state for search values as user types
 	const [values, setValues] = useState("");
+
 	// state for search results
 	const [results, setResults] = useState([]);
 
@@ -29,6 +30,9 @@ const Discover = () => {
 		};
 		fetchData();
 	};
+	useEffect(() => {
+		getLibrary();
+	}, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

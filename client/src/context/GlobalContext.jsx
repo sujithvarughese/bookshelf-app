@@ -123,14 +123,17 @@ const GlobalProvider = ({ children }) => {
 	};
 
 	const addBookToLibrary = async (book) => {
-		const { title, authors, cover_id, first_publish_year, subject } = book;
+		const { title, authors, cover_id, first_publish_year, subject, infoURL, previewAvailable, previewURL } = book;
 		try {
 			await axDB.post("/library", {
 				title: title,
 				authors: authors.map(author => author.name),
 				coverID: cover_id,
 				firstPublishYear: first_publish_year,
-				subject: subject
+				subject: subject,
+				infoURL,
+				previewAvailable,
+				previewURL
 			});
 			await getLibrary();
 			displayAlert("Book added", "success");

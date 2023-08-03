@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useState } from "react";
 import { AddBookToBookshelfBtn, RemoveFromLibraryBtn, EditBookBtn } from "./buttons/index.js";
+import iconX from "../assets/images/x_icon.svg";
 
 // book when called from database
 const BookDB = (book) => {
@@ -11,6 +12,9 @@ const BookDB = (book) => {
 		title,
 		authors,
 		coverID,
+		infoURL,
+		previewAvailable,
+		previewURL,
 		firstPublishYear,
 		status,
 		userRating,
@@ -40,7 +44,8 @@ const BookDB = (book) => {
 
 
 	const { displayAlert, showAlert, updateBookDetails, removeBookFromBookshelf } = useGlobalContext();
-
+	/*
+	 */
 	return (
 		<div
 			className="m-6 bg-white rounded-lg overflow-hidden shadow-lg lg:w-1/4 md:w-1/3 sm:w-1/2"
@@ -48,22 +53,27 @@ const BookDB = (book) => {
 			{
 				showDetails ? // false by default
 					/* detailed view (when book is clicked) */
-					<div className="book-detailed-view my-4">
+					<div className="book-detailed-view my-4 relative overflow-hidden">
+						<img
+							src={iconX}
+							className="absolute right-3 w-6 right-0 hover:bg-gray-200 hover:cursor-pointer"
+							alt="X"
+							onClick={() => setShowDetails(false)}
+						/>
+
 						<div>
-							<img
-								className="h-32 w-20 mx-auto rounded-lg shadow-md"
-								src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`}
-								alt={title}
-								onClick={() => setShowDetails(!showDetails)}
-
-							/>
+							<a href={infoURL} target="_blank" rel="noreferrer"
+							   className="text-2xl leading-tight py-2">
+								<img className="h-32 w-20 mx-auto my-4 rounded-lg shadow-md"
+								     src={`https://covers.openlibrary.org/b/id/${coverID}-M.jpg`}
+								     alt={title}
+								/>
+							</a>
 						</div>
 
-
-						<div className="text-lg leading-tight py-1 hover:cursor-pointer hover:text-teal-500"
-						     onClick={() => setShowDetails(!showDetails)}>
-							{title}
-						</div>
+						<a href={infoURL} target="_blank" rel="noreferrer"
+						   className="text-2xl leading-tight py-2 hover:cursor-pointer hover:text-teal-500">{title}
+						</a>
 
 						<div className="text-gray-500">
 							{
@@ -215,6 +225,11 @@ const BookDB = (book) => {
 						<div>
 							{firstPublishYear}
 						</div>
+
+						<a href={previewURL} target="_blank" rel="noreferrer"
+						   className="bg-teal-400 m-4 z-10 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">Show
+							preview
+						</a>
 					</div>
 			}
 		</div>
