@@ -15,7 +15,7 @@ const BookshelfPreview = (bookshelf) => {
 			}}>
 
 			<div>
-				<img className="mx-auto rounded-lg p-3" src={cover} alt={name} />
+				<img className="mx-auto rounded-lg p-3 h-40" src={cover} alt={name} />
 			</div>
 
 
