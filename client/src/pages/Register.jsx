@@ -2,6 +2,7 @@ import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { FormRow } from "../components/forms";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import GuestLogin from "../components/GuestLogin.jsx";
 
 const initialState = {
 	lastName: "",
@@ -71,6 +72,8 @@ const Register = () => {
 					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
 					         to="/login">Login</NavLink>
 				</div>
+				<GuestLogin />
+
 			</div>
 
 
