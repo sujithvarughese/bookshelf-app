@@ -1,5 +1,5 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-
+import { NavLink } from "react-router-dom";
 
 const GuestLogin = () => {
 
@@ -16,12 +16,10 @@ const GuestLogin = () => {
 		<div className="flex flex-col gap-6">
 			<div>Try Creating an account and get started!</div>
 			<div>
-				Or <a
-
-				className="underline text-blue-500 hover:cursor-pointer hover:text-cyan-500"
-				onClick={guestLogin}>Click here
-
-			</a> to log in with Justin Bieber's credentials to check out the site!
+				Or
+				<button className="underline text-blue-500 hover:cursor-pointer hover:text-cyan-500"
+				        onClick={guestLogin}>click here</button>
+				to access the site in Guest Mode!
 			</div>
 		</div>
 	);
