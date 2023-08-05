@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { BookDB, Loading } from "../components/index.js";
-
+import bookshelfImages from "../assets/images/bookshelves/index.js";
 
 const Bookshelf = () => {
 	// params is bookshelf._id
