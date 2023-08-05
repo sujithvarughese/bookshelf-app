@@ -1,13 +1,15 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { NavLink } from "react-router-dom";
+
+const pw = import.meta.env.VITE_BEEBS_TOP_SECRET;
 
 const GuestLogin = () => {
 
 	const { login } = useGlobalContext();
 
-	const guestLogin = () => {
+	const guestLogin = (e) => {
+		e.preventDefault();
 		const email = "justbeebs@mail.com";
-		const password = import.meta.env.VITE_BEEBS_TOP_SECRET;
+		const password = pw;
 		login({ email, password });
 	};
 

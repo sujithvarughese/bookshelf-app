@@ -72,6 +72,7 @@ const Register = () => {
 					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
 					         to="/login">Login</NavLink>
 				</div>
+
 				<GuestLogin />
 
 			</div>
