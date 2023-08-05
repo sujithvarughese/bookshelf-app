@@ -1,7 +1,5 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
-const pw = import.meta.env.VITE_BEEBS_TOP_SECRET;
-
 const GuestLogin = () => {
 
 	const { login } = useGlobalContext();
@@ -9,7 +7,7 @@ const GuestLogin = () => {
 	const guestLogin = (e) => {
 		e.preventDefault();
 		const email = "justbeebs@mail.com";
-		const password = pw;
+		const password = import.meta.env.VITE_BEEBS_TOP_SECRET;
 		login({ email, password });
 	};
 
