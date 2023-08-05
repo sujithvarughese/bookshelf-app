@@ -3,8 +3,7 @@ import axios from "axios";
 import { config } from "../../constants.js";
 
 const axAPI = axios.create({
-	baseURL: "https://openlibrary.org",
-	withCredentials: true
+	baseURL: "https://openlibrary.org"
 });
 // response
 axAPI.interceptors.response.use(

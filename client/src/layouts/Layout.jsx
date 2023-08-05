@@ -3,12 +3,12 @@ import Footer from "./Footer.jsx";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { Alert } from "../components/index.js";
+import { Alert, Loading } from "../components/index.js";
 
 
 const Layout = () => {
 
-	const { user, getLibrary, getAllBookshelves, showAlert } = useGlobalContext();
+	const { user, getLibrary, getAllBookshelves, showAlert, isLoading } = useGlobalContext();
 	// automatically redirect appropriately if user credentials ok
 	const navigate = useNavigate();
 
@@ -29,6 +29,7 @@ const Layout = () => {
 			<Navbar />
 			{showAlert && <Alert />}
 			<div>
+				{isLoading && <Loading />}
 				<Outlet />
 			</div>
 
