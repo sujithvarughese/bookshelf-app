@@ -15,10 +15,7 @@ const Home = () => {
 			</div>
 
 			{isLoading && <Loading />}
-			<>
-				<DiscoverComponent />
-				<ContinueComponent />
-			</>
+
 		</div>
 	);
 };
