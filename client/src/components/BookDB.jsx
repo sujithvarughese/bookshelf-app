@@ -85,12 +85,12 @@ const BookDB = (book) => {
 						{
 							editMode ?
 								/* Edit view will change book details to editable form */
-								<form className="px-2" onSubmit={handleSubmit}>
+								<form className="edit-form" onSubmit={handleSubmit}>
 
-									<div className="flex">
+									<div className="flex justify-between">
 										<div className="text-sm flex">
 
-											<label htmlFor="status" className="form-label">
+											<label htmlFor="status" className="form-label mt-4">
 												Status:
 											</label>
 
@@ -98,7 +98,7 @@ const BookDB = (book) => {
 												name="status"
 												value={values.status}
 												onChange={handleChange}
-												className="form-select w-1/2 mb-1"
+												className="form-select"
 											>
 												<option value="unread">unread</option>
 												<option value="completed">completed</option>
@@ -107,15 +107,15 @@ const BookDB = (book) => {
 
 										</div>
 
-										<div className="text-sm flex">
-											<label htmlFor="userRating" className="form-label">
+										<div className="text-xs flex">
+											<label htmlFor="userRating" className="form-label mt-4">
 												Rating:
 											</label>
 											<select
 												name="userRating"
 												value={values.userRating}
 												onChange={handleChange}
-												className="form-select mb-1"
+												className="form-select"
 											>
 												<option value={1}>1</option>
 												<option value={2}>2</option>
@@ -132,16 +132,16 @@ const BookDB = (book) => {
 									</div>
 
 
-									<div className="text-sm">
+									<div className="text-sm mt-1">
 										<label htmlFor="notes">Notes: </label>
 										<textarea
-											className="bg-color-grey shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											className="form-textarea"
 											name="notes" rows={8} value={values.notes} onChange={handleChange} />
 									</div>
 
 
 									<button
-										className="mx-6 my-1.5 text-white py-1 px-8 bg-teal-400 rounded-lg hover:text-black text-white font-bold ">Save
+										className="btn">Save
 									</button>
 								</form>
 								:
@@ -202,6 +202,7 @@ const BookDB = (book) => {
 					:
 					/* book basic view */
 					<div className="flex flex-col py-12 hover:bg-gray-200">
+
 						<div className="py-8">
 							<img
 								className="h-64 w-40 mx-auto rounded-lg shadow-md"
@@ -227,7 +228,7 @@ const BookDB = (book) => {
 						</div>
 
 						<a href={previewURL} target="_blank" rel="noreferrer"
-						   className="bg-teal-400 m-4 z-10 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">Show
+						   className="btn z-10 font-bold mx-16">Show
 							preview
 						</a>
 					</div>

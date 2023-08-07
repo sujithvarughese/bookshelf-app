@@ -45,13 +45,13 @@ const Discover = () => {
 
 			<div className="w-1/2 mx-auto my-12">
 
-				<div className="text-4xl m-8">Discover</div>
-
+				<div className="text-4xl my-8">Discover</div>
+				<div className="text pb-8">Search for any book by subject!</div>
 				{/* search bar to discover by genre */}
 
 				<form className="flex gap-6" onSubmit={handleSubmit}>
 					<input
-						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+						className="form-input"
 						type="text"
 						placeholder="Search subject"
 						value={values}
@@ -60,7 +60,7 @@ const Discover = () => {
 						}}
 					/>
 					<button
-						className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs"
+						className="btn"
 						type="submit"
 					>
 						search

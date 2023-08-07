@@ -17,7 +17,7 @@ const Library = () => {
 			<div className="w-1/2 mx-auto my-12">
 				<div className="text-4xl m-8">My Library</div>
 			</div>
-
+			<div className="text">Browse your collection! Click any title to get more info!</div>
 			{isLoading && <Loading />}
 
 			<div

@@ -28,8 +28,9 @@ const NewBookshelfForm = () => {
 	return (
 
 		<form className="flex gap-6" onSubmit={handleSubmit}>
+			<label htmlFor="name" className="form-label ">Create new bookshelf: </label>
 			<input
-				className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+				className="form-input"
 				type="text"
 				name="name"
 				placeholder="New Bookshelf Name"
@@ -37,10 +38,10 @@ const NewBookshelfForm = () => {
 				onChange={handleChange}
 			/>
 
-			<button className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs"
+			<button className="btn"
 			        type="submit"
 			>
-				create bookshelf
+				create!
 			</button>
 		</form>
 

@@ -33,25 +33,26 @@ const Login = () => {
 
 
 	return (
-		<form onSubmit={handleSubmit} className="border-solid border-4 rounded-3xl w-11/12 my-20 mx-auto py-14 max-w-md">
+		<form onSubmit={handleSubmit}
+		      className="form max-w-lg">
 
-			<div className="text-4xl m-8">Login</div>
+			<div className="form-title">Login</div>
 
-			<div className="m-10 space-y-10">
+			<div className="form-content">
 				<FormRow labelText="email" type="email" name="email" value={values.email} handleChange={handleChange} />
 
 				<FormRow labelText="password" type="password" name="password" value={values.password}
 				         handleChange={handleChange} />
 
 				<button type="submit"
-				        className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
+				        className="btn my-6">
 					Login
 				</button>
 
 				<div>
-					<span>Not a Member Yet?</span>
-					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
-					         to="/register">Register</NavLink>
+					<span className="decoration-none">Not a member yet?  </span>
+					<NavLink className="link"
+					         to="/register"> Register</NavLink>
 				</div>
 			</div>
 

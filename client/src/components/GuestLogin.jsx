@@ -14,9 +14,9 @@ const GuestLogin = () => {
 
 	return (
 		<div className="flex flex-col gap-6">
-			<div>Try Creating an account and get started!</div>
-			<div>
-				Or <button className="underline text-blue-500 hover:cursor-pointer hover:text-cyan-500"
+			<div className="text">Try creating an account and get started!</div>
+			<div className="text text-xl">
+				Or <button className="link"
 				           onClick={guestLogin}>click here</button> to access the site in Guest Mode!
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import bookshelfImages from "../../public/index.js";
+import bookshelfImages from "../assets/images/bookshelves/index.js";
 
 const BookshelfPreview = (bookshelf) => {
 

@@ -46,11 +46,10 @@ const Register = () => {
 	}, [user]);
 
 	return (
-		<form onSubmit={handleSubmit} className="border-solid border-4 rounded-3xl w-11/12 my-20 mx-auto py-14 max-w-md">
+		<form onSubmit={handleSubmit} className="form max-w-lg">
 
-			<div className="text-4xl m-8">register</div>
-
-			<div className="m-10 space-y-10">
+			<div className="form-title">register</div>
+			<div className="form-content">
 				<FormRow labelText="last name" type="text" name="lastName" value={values.lastName}
 				         handleChange={handleChange} />
 
@@ -62,15 +61,11 @@ const Register = () => {
 				<FormRow labelText="password" type="password" name="password" value={values.password}
 				         handleChange={handleChange} />
 
-				<button type="submit"
-				        className="bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-xs">
-					Register
-				</button>
+				<button type="submit" className="btn my-6">Register</button>
 
 				<div>
-					<span>Already a member?</span>
-					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
-					         to="/login">Login</NavLink>
+					<span className="text">Already a member?</span>
+					<NavLink className="link px-1" to="/login">Login</NavLink>
 				</div>
 
 				<GuestLogin />
