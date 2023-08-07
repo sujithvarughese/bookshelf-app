@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { BookDB, Loading } from "../components/index.js";
+import { BookDB } from "../components/index.js";
 import bookshelfImages from "../assets/images/bookshelves/index.js";
 
 const Bookshelf = () => {
@@ -28,7 +28,6 @@ const Bookshelf = () => {
 					Your bookshelf is empty! Go to your library and add books to get started!
 				</div>
 			}
-			{isLoading && <Loading />}
 			<div className="flex flex-wrap justify-around bg-gray-100 rounded-lg">
 				{
 					bookshelf?.books.map((book, index) => {

@@ -1,6 +1,5 @@
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { useEffect, useState } from "react";
-import { BookDB, ContinueComponent, DiscoverComponent, Loading } from "../components";
+
 
 const Home = () => {
 
@@ -14,7 +13,6 @@ const Home = () => {
 				<div className="text-4xl mx-8">Home</div>
 			</div>
 
-			{isLoading && <Loading />}
 
 		</div>
 	);

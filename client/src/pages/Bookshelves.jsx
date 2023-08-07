@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import NewBookshelfForm from "../components/forms/NewBookshelfForm.jsx";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { BookshelfPreview, Loading } from "../components";
+import { BookshelfPreview } from "../components";
 
 const Bookshelves = () => {
 
@@ -21,7 +21,6 @@ const Bookshelves = () => {
 					<NewBookshelfForm />
 				</div>
 
-				{isLoading && <Loading />}
 
 			</div>
 

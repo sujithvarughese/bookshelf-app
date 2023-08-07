@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { axAPI } from "../utils/ax.jsx";
-import { BookAPI, Loading } from "../components";
+import { BookAPI } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 // page will allow user to search for books to add to his/her library
@@ -67,8 +67,6 @@ const Discover = () => {
 					</button>
 				</form>
 			</div>
-
-			{isLoading && <Loading />}
 
 			<div className="flex flex-wrap justify-around bg-gray-100 rounded-lg">
 				{results.map((book) => {

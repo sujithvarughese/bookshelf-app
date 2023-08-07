@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const Library = () => {
 
 	// library already in global state from Home render
-	const { library, getLibrary, isLoading } = useGlobalContext();
+	const { library, getLibrary } = useGlobalContext();
 
 	useEffect(() => {
 		getLibrary();
@@ -18,7 +18,6 @@ const Library = () => {
 				<div className="text-4xl m-8">My Library</div>
 			</div>
 			<div className="text">Browse your collection! Click any title to get more info!</div>
-			{isLoading && <Loading />}
 
 			<div
 				className="flex flex-wrap justify-around bg-gray-100 rounded-lg">

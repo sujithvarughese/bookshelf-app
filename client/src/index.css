@@ -82,11 +82,6 @@ body {
     color: #829ab1;
 }
 
-.form-alert {
-    color: #842029;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-}
 
 .form-title {
     font-size: 2rem; /* 48px */
