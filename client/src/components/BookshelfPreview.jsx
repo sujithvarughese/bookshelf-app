@@ -4,7 +4,8 @@ import bookshelfImages from "../../public/index.js";
 const BookshelfPreview = (bookshelf) => {
 
 	const { _id, cover, name, notes } = bookshelf;
-	console.log(cover);
+
+
 	// to navigate to bookshelf id on user click
 	const navigate = useNavigate();
 
@@ -16,7 +17,8 @@ const BookshelfPreview = (bookshelf) => {
 			}}>
 
 			<div>
-				<img className="mx-auto rounded-lg p-3 h-40" src={bookshelfImages.find(img => img === cover)} alt={name} />
+				<img className="mx-auto rounded-lg p-3 h-40"
+				     src={bookshelfImages[Math.floor(Math.random() * bookshelfImages.length)]} alt={name} />
 			</div>
 
 
