@@ -1,6 +1,6 @@
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
-import bookshelfImages from "../../assets/images/bookshelves";
+import bookshelfImages from "../../../public/index.js";
 
 const initialState = {
 	name: "",
