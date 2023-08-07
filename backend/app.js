@@ -14,6 +14,8 @@ import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/error-handler.js";
 import notFound from "./middleware/not-found.js";
 import { authenticateUser, authorizePermissions } from "./middleware/authentication.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 //---------------------//
 const app = express();
@@ -29,6 +31,10 @@ app.use(cookieParser(process.env.JWT_SECRET));
 if (process.env.NODE_ENV !== "production") {
 	app.use(morgan("dev"));
 }
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// only when ready to deploy
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 app.get("/", (req, res) => {
 	res.send("bookshelf-api");
@@ -39,5 +45,9 @@ app.use("/api/v1/library", authenticateUser, bookRouter);
 app.use("/api/v1/bookshelves", authenticateUser, bookshelfRouter);
 app.use("/api/v1/auth", authRouter);  // login, logout, register
 
+
+app.get("*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 export default app;
