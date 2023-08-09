@@ -44,7 +44,8 @@ app.get("/", (req, res) => {
 app.use("/api/v1/library", authenticateUser, bookRouter);
 app.use("/api/v1/bookshelves", authenticateUser, bookshelfRouter);
 app.use("/api/v1/auth", authRouter);  // login, logout, register
-
+app.use(notFound);
+app.use(errorHandler);
 
 app.get("*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
