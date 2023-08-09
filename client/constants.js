@@ -1,6 +1,6 @@
 const prod = {
 	url: {
-		API_URL: "https://bookshelf-rzqy.onrender.com/api/v1"
+		API_URL: "https://dark-plum-dalmatian-sock.cyclic.app" || "https://bookshelf-rzqy.onrender.com/api/v1"
 	}
 };
 
