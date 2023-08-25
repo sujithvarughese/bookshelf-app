@@ -45,7 +45,7 @@ const Discover = () => {
 
 			<div className="w-1/2 mx-auto my-12">
 
-				<div className="text-4xl my-8">Discover</div>
+				<div className="title">Discover</div>
 				<div className="text pb-8">Search for any book by subject!</div>
 				{/* search bar to discover by genre */}
 

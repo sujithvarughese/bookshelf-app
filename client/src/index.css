@@ -3,17 +3,29 @@
 @tailwind utilities;
 
 :root {
-    --color-light: #4fd1c5;
-    --color: #38b2ac;
-    --color-dark: #285e61;
+    --COLOR-LIGHT: #4fd1c5;
+    --COLOR: #38b2ac;
+    --COLOR-DARK: #285e61;
+
+    --COLOR-GRADIENT: radial-gradient(var(--COLOR), var(--COLOR-LIGHT))
 }
 
 body {
     font-family: "Damascus";
 }
 
+.nav-font {
+    font-family: "pastiche-brush", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
 .title {
-    font-size: 3rem; /* 48px */
+    font-family: "pastiche-brush", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4rem; /* 48px */
     line-height: 1;
     padding: 1.25rem; /* 20px */
     text-align: center;
@@ -24,7 +36,7 @@ body {
     background: #fff;
     border-radius: 2rem;
     margin: 4rem auto;
-    border: 5px solid var(--color);
+    border: 5px solid var(--COLOR);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
     padding: 4rem 2.5rem;
@@ -55,7 +67,7 @@ body {
 .form-textarea,
 .form-select {
     width: 100%;
-    padding: 0.6rem;
+    padding: 0.5rem;
     border-radius: 0.25rem;
     background: #f0f4f8;
     border: 1px solid #bcccdc;
@@ -110,7 +122,7 @@ body {
     cursor: pointer;
     color: #fff;
     font-size: 12px;
-    background: var(--color-light);
+    background: var(--COLOR-GRADIENT);
     border: transparent;
     border-radius: 0.75rem;
     letter-spacing: 1px;
@@ -137,19 +149,19 @@ body {
 }
 
 .btn:hover {
-    background: var(--color-dark);
+    background: var(--COLOR-DARK);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .link {
-    color: var(--color-light);
+    color: var(--COLOR-LIGHT);
     text-decoration: underline;
 
 }
 
 .link:hover {
-    color: var(--color-dark);
+    color: var(--COLOR-DARK);
 }
 
 .text {
@@ -158,7 +170,23 @@ body {
 }
 
 .card {
+    margin: 2rem;
+    background: white;
+    padding: 2rem 2rem 1rem 2rem;
+}
 
+.modal {
+    width: 50vw;
+    height: 80vh;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem;
+}
+
+.author {
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @keyframes spinner {

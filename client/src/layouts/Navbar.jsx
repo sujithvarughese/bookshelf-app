@@ -95,7 +95,7 @@ const Navbar = () => {
 								key={index}
 								to={link.url}
 								className={({ isActive }) => [
-									"px-2.5 py-1",
+									"nav-font", "px-2.5 py-1",
 									"hover:bg-teal-400",
 									"hover:text-white",
 									"rounded-md transition",

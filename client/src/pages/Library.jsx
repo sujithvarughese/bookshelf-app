@@ -1,4 +1,4 @@
-import { BookDB, Loading } from "../components";
+import { BookDB, Loading, Card } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect } from "react";
 
@@ -15,7 +15,7 @@ const Library = () => {
 	return (
 		<div className="">
 			<div className="w-1/2 mx-auto my-12">
-				<div className="text-4xl m-8">My Library</div>
+				<div className="title">My Library</div>
 			</div>
 			<div className="text">Browse your collection! Click any title to get more info!</div>
 
@@ -25,7 +25,7 @@ const Library = () => {
 					library?.map(book => {
 						const { _id } = book;
 						return (
-							<BookDB key={_id} {...book} />
+							<Card key={_id} {...book} />
 						);
 					})}
 			</div>

@@ -88,6 +88,7 @@ const BookDB = (book) => {
 								<form className="edit-form" onSubmit={handleSubmit}>
 
 									<div className="flex justify-between">
+
 										<div className="text-sm flex">
 
 											<label htmlFor="status" className="form-label mt-4">

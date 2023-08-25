@@ -16,7 +16,7 @@ const Bookshelves = () => {
 		<div className="">
 			<div className="w-1/2 mx-auto my-12">
 
-				<div className="text-4xl m-8">My Bookshelves</div>
+				<div className="title">My Bookshelves</div>
 				<div className="mx-auto my-12">
 					<NewBookshelfForm />
 				</div>

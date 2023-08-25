@@ -5,7 +5,9 @@ import Alert from "./Alert.jsx";
 import BookshelfPreview from "./BookshelfPreview.jsx";
 import ContinueComponent from "./ContinueComponent.jsx";
 import DiscoverComponent from "./DiscoverComponenet.jsx";
-
+import ModalWrapper from "./ModalWrapper.jsx";
+import Card from "./Card.jsx";
+import CardModal from "./CardModal.jsx";
 
 export {
 	BookDB,
@@ -14,5 +16,8 @@ export {
 	Loading,
 	Alert,
 	ContinueComponent,
-	DiscoverComponent
+	DiscoverComponent,
+	ModalWrapper,
+	Card,
+	CardModal
 };
