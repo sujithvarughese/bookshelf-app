@@ -3,6 +3,7 @@ import logo from "../assets/images/logo.jpeg";
 import { LoginForm } from "../components/forms/index.js";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect, useState } from "react";
+import GuestLogin from "../components/GuestLogin.jsx";
 
 const adminLinks = [
 	/*
@@ -120,11 +121,17 @@ const Navbar = () => {
 					/* if no user, will display form to log in, and link to register */
 					<div className="hidden lg:flex flex-col">
 						<LoginForm />
-						<div className="mx-24">
-							Not a member yet?
-							<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
-							         to="/register">Register</NavLink>
+						<div className="flex">
+							<div className="mx-24">
+								Not a member yet?
+								<NavLink className="link"
+								         to="/register"> Register</NavLink>
+							</div>
+							<div>
+								<GuestLogin />
+							</div>
 						</div>
+
 					</div>
 				}
 

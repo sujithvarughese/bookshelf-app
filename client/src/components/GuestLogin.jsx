@@ -14,10 +14,10 @@ const GuestLogin = () => {
 
 	return (
 		<div className="flex flex-col gap-6">
-			<div className="text">Try creating an account and get started!</div>
-			<div className="text text-xl">
-				Or <button className="link"
-				           onClick={guestLogin}>click here</button> to access the site in Guest Mode!
+			<div className="text text-base">
+				<button className="link"
+				        onClick={guestLogin}>Preview Site
+				</button>
 			</div>
 		</div>
 	);

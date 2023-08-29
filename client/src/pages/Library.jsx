@@ -25,7 +25,7 @@ const Library = () => {
 					library?.map(book => {
 						const { _id } = book;
 						return (
-							<Card key={_id} {...book} />
+							<BookDB key={_id} {...book} />
 						);
 					})}
 			</div>
