@@ -80,7 +80,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="navbar">
+		<nav className="navbar w-max-screen">
 			<div className="flex items-center justify-between font-serif p-1 bg-stone-100">
 
 				{/* logo */}
@@ -89,7 +89,7 @@ const Navbar = () => {
 				</div>
 
 				{/* links (dynamically set based on user role */}
-				<div className="hidden sm:flex space-x-6">
+				<div className="flex">
 					{links.map((link, index) => {
 						return (
 							<NavLink
@@ -112,36 +112,38 @@ const Navbar = () => {
 
 				{/* if user logged in, will display "hello, user" and option to log out */}
 				{user && Object.keys(user).length > 0 ?
-					<div className="mx-16">
+					<div className="mx-2">
 						Hello {user.firstName}!
 						<button className="mx-2 my-4 py-1 px-3 bg-teal-400 rounded-full hover:text-white" type="submit"
 						        onClick={handleLogout}>Logout</button>
 					</div>
 					:
 					/* if no user, will display form to log in, and link to register */
-					<div className="hidden lg:flex flex-col">
-						<LoginForm />
-						<div className="flex">
-							<div className="mx-24">
-								Not a member yet?
-								<NavLink className="link"
-								         to="/register"> Register</NavLink>
+					<div className="">
+						<div className="hidden lg:flex flex-col">
+							<LoginForm />
+							<div className="flex">
+								<div className="mx-24">
+									Not a member yet?
+									<NavLink className="link"
+									         to="/register"> Register</NavLink>
+								</div>
 							</div>
-							<div>
-								<GuestLogin />
-							</div>
+						</div>
+
+						<div>
+							<GuestLogin />
+						</div>
+						{/* small screen sizes, the whole login form will not be displayed, instead a link to a separate log in page will be displayed */}
+						<div className="lg:hidden">
+							<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+							         to="/login">Login</NavLink>
+							<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
+							         to="/register">Register</NavLink>
 						</div>
 
 					</div>
 				}
-
-				{/* small screen sizes, the whole login form will not be displayed, instead a link to a separate log in page will be displayed */}
-				<div className="lg:hidden">
-					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
-					         to="/login">Login</NavLink>
-					<NavLink className="underline decoration-1 hover:text-teal-500 px-1"
-					         to="/register">Register</NavLink>
-				</div>
 
 
 			</div>
